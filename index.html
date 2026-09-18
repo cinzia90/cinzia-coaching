@@ -158,9 +158,95 @@
   <div class="container">
     <div class="chisono-inner">
       <div class="chisono-media">
-        <div class="chisono-photo-wrap reveal-clip">
-          <img src="img/photo-6.jpg" alt="Cinzia Rosato in palestra"/>
-          <div class="chisono-photo-glow"></div>
+        <!-- Carousel: video e frasi alternati (v1 → frase → v2 → frase → ...) -->
+        <div class="vc-wrap vc-chisono" id="vc-wrap">
+          <div class="vc-track" id="vc-track">
+
+            <!-- 1. VIDEO -->
+            <div class="vc-slide active">
+              <video muted loop playsinline><source src="img/video-new-1.mp4" type="video/mp4"/></video>
+            </div>
+            <!-- 2. FRASE -->
+            <div class="vc-slide vc-text-slide">
+              <div class="vct-line"></div>
+              <span class="vct-word">DISCIPLINA</span>
+              <p class="vct-desc">Non è una parola, è un&rsquo;abitudine quotidiana che costruisce il corpo e la mente.</p>
+              <div class="vct-line"></div>
+            </div>
+
+            <!-- 3. VIDEO -->
+            <div class="vc-slide">
+              <video muted loop playsinline><source src="img/video-new-2.mp4" type="video/mp4"/></video>
+            </div>
+            <!-- 4. FRASE -->
+            <div class="vc-slide vc-text-slide">
+              <div class="vct-line"></div>
+              <span class="vct-word">METODO</span>
+              <p class="vct-desc">Ogni sessione ha uno scopo preciso. Nulla &egrave; lasciato al caso.</p>
+              <div class="vct-line"></div>
+            </div>
+
+            <!-- 5. VIDEO -->
+            <div class="vc-slide">
+              <video muted loop playsinline><source src="img/video-new-3.mp4" type="video/mp4"/></video>
+            </div>
+            <!-- 6. FRASE -->
+            <div class="vc-slide vc-text-slide">
+              <div class="vct-line"></div>
+              <span class="vct-word">COSTANZA</span>
+              <p class="vct-desc">I risultati non arrivano dall&rsquo;intensit&agrave; di un giorno, ma dalla regolarit&agrave; di mesi.</p>
+              <div class="vct-line"></div>
+            </div>
+
+            <!-- 7. VIDEO -->
+            <div class="vc-slide">
+              <video muted loop playsinline><source src="img/video-new-4.mp4" type="video/mp4"/></video>
+            </div>
+            <!-- 8. FRASE -->
+            <div class="vc-slide vc-text-slide">
+              <div class="vct-line"></div>
+              <span class="vct-word">FORZA</span>
+              <p class="vct-desc">Fisica e mentale. Le due facce della trasformazione autentica.</p>
+              <div class="vct-line"></div>
+            </div>
+
+            <!-- 9. VIDEO -->
+            <div class="vc-slide">
+              <video muted loop playsinline><source src="img/video-new-5.mp4" type="video/mp4"/></video>
+            </div>
+            <!-- 10. FRASE -->
+            <div class="vc-slide vc-text-slide">
+              <div class="vct-line"></div>
+              <span class="vct-word">TRASFORMAZIONE</span>
+              <p class="vct-desc">Non solo estetica &mdash; una nuova versione di te, dall&rsquo;interno.</p>
+              <div class="vct-line"></div>
+            </div>
+
+            <!-- 11. VIDEO -->
+            <div class="vc-slide">
+              <video muted loop playsinline><source src="img/video-new-6.mp4" type="video/mp4"/></video>
+            </div>
+            <!-- 12. FRASE -->
+            <div class="vc-slide vc-text-slide">
+              <div class="vct-line"></div>
+              <span class="vct-word">RISPLENDI</span>
+              <p class="vct-desc">Questo &egrave; l&rsquo;obiettivo finale. Scegliti. Costruisciti. Risplendi.</p>
+              <div class="vct-line"></div>
+            </div>
+
+          </div>
+          <button class="vc-btn vc-prev" id="vc-prev" aria-label="Precedente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15,18 9,12 15,6"/></svg>
+          </button>
+          <button class="vc-btn vc-next" id="vc-next" aria-label="Successivo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9,6 15,12 9,18"/></svg>
+          </button>
+          <div class="vc-dots" id="vc-dots">
+            <span class="vc-dot active"></span><span class="vc-dot"></span><span class="vc-dot"></span>
+            <span class="vc-dot"></span><span class="vc-dot"></span><span class="vc-dot"></span>
+            <span class="vc-dot"></span><span class="vc-dot"></span><span class="vc-dot"></span>
+            <span class="vc-dot"></span><span class="vc-dot"></span><span class="vc-dot"></span>
+          </div>
         </div>
       </div>
       <div class="chisono-text">
@@ -182,49 +268,6 @@
   </div>
 </section>
 
-<!-- VIDEO REEL — carousel spotlight -->
-<section id="video-reel" class="section-video-reel">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">In allenamento</span>
-      <h2 class="section-title">Il lavoro dietro <em>ai risultati</em></h2>
-      <p>Ogni sessione, ogni rep, ogni sacrificio &mdash; questo &egrave; il quotidiano che fa la differenza.</p>
-    </div>
-  </div>
-  <div class="vc-wrap" id="vc-wrap">
-    <div class="vc-track" id="vc-track">
-      <div class="vc-slide active">
-        <video muted loop playsinline><source src="img/video-new-1.mp4" type="video/mp4"/></video>
-      </div>
-      <div class="vc-slide">
-        <video muted loop playsinline><source src="img/video-new-2.mp4" type="video/mp4"/></video>
-      </div>
-      <div class="vc-slide">
-        <video muted loop playsinline><source src="img/video-new-3.mp4" type="video/mp4"/></video>
-      </div>
-      <div class="vc-slide">
-        <video muted loop playsinline><source src="img/video-new-4.mp4" type="video/mp4"/></video>
-      </div>
-      <div class="vc-slide">
-        <video muted loop playsinline><source src="img/video-new-5.mp4" type="video/mp4"/></video>
-      </div>
-      <div class="vc-slide">
-        <video muted loop playsinline><source src="img/video-new-6.mp4" type="video/mp4"/></video>
-      </div>
-    </div>
-    <button class="vc-btn vc-prev" id="vc-prev" aria-label="Precedente">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15,18 9,12 15,6"/></svg>
-    </button>
-    <button class="vc-btn vc-next" id="vc-next" aria-label="Successivo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9,6 15,12 9,18"/></svg>
-    </button>
-    <div class="vc-dots" id="vc-dots">
-      <span class="vc-dot active"></span><span class="vc-dot"></span><span class="vc-dot"></span>
-      <span class="vc-dot"></span><span class="vc-dot"></span><span class="vc-dot"></span>
-    </div>
-  </div>
-</section>
-
 <!-- CREDENZIALI AGONISTICHE (ex palmares) -->
 <section id="risultati">
   <div class="container">
@@ -234,8 +277,9 @@
       <p>Due podi nazionali. Non per vantarmi &mdash; quella disciplina &egrave; oggi il cuore del mio metodo di coaching.</p>
     </div>
     <div class="cred-wrap">
+      <!-- Foto da img/gare/ — aggiungi altri file in quella cartella -->
       <div class="cred-photo">
-        <img src="img/photo-8.jpg" alt="IFBB Pugliesi 2025 &middot; 1&deg; Posto" class="reveal-clip" loading="lazy"/>
+        <img src="img/gare/gara-1.jpg" alt="IFBB Pugliesi 2025 &middot; 1&deg; Posto" class="reveal-clip" loading="lazy"/>
         <div class="cred-photo-overlay">
           <span class="cred-photo-badge badge-gold">1° POSTO</span>
           <div class="cred-photo-info">
@@ -346,52 +390,66 @@
   </div>
 </section>
 
-<!-- GALLERY — VORTICE 3D (CSS sticky + scroll-driven rotation) -->
-<div class="gallery-scroll-space" id="gallery">
-<section class="gallery-sticky-wrap">
+<!-- GALLERY — COVERFLOW INTERATTIVO (swipe ← → / wheel / frecce) -->
+<section id="gallery">
   <div class="container">
     <div class="section-header">
       <span class="section-tag">Gallery</span>
       <h2 class="section-title">Forma. <em>Disciplina. Luce.</em></h2>
-      <p class="gallery-hint">Scorri per esplorare</p>
     </div>
   </div>
   <div class="vortex-stage">
+    <!-- Foto da img/mare/ — aggiungi altri file in quella cartella e duplica il blocco -->
     <div class="vortex-ring" id="vortex-ring">
       <div class="vortex-item" data-phrase="DISCIPLINA">
-        <img src="img/hero-bg.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <img src="img/mare/mare-1.jpg" alt="Cinzia Rosato" loading="lazy"/>
         <div class="vortex-phrase">DISCIPLINA</div>
       </div>
+      <div class="vortex-item" data-phrase="BELLEZZA">
+        <img src="img/mare/mare-4.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">BELLEZZA</div>
+      </div>
       <div class="vortex-item" data-phrase="COSTANZA">
-        <img src="img/gallery-1.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <img src="img/mare/mare-2.jpg" alt="Cinzia Rosato" loading="lazy"/>
         <div class="vortex-phrase">COSTANZA</div>
       </div>
+      <div class="vortex-item" data-phrase="MARE">
+        <img src="img/mare/mare-5.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">MARE</div>
+      </div>
       <div class="vortex-item" data-phrase="TRASFORMAZIONE">
-        <img src="img/gallery-2.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <img src="img/mare/mare-3.jpg" alt="Cinzia Rosato" loading="lazy"/>
         <div class="vortex-phrase">TRASFORMAZIONE</div>
       </div>
+      <div class="vortex-item" data-phrase="LIBERTÀ">
+        <img src="img/mare/mare-6.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">LIBERT&Agrave;</div>
+      </div>
       <div class="vortex-item" data-phrase="FORZA">
-        <img src="img/hero-cover.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <img src="img/mare/mare-8.jpg" alt="Cinzia Rosato" loading="lazy"/>
         <div class="vortex-phrase">FORZA</div>
       </div>
-      <div class="vortex-item" data-phrase="METODO">
-        <img src="img/gallery-3.jpg" alt="Cinzia Rosato" loading="lazy"/>
-        <div class="vortex-phrase">METODO</div>
-      </div>
-      <div class="vortex-item" data-phrase="ECCELLENZA">
-        <img src="img/gallery-4.jpg" alt="Cinzia Rosato" loading="lazy"/>
-        <div class="vortex-phrase">ECCELLENZA</div>
+      <div class="vortex-item" data-phrase="LUCE">
+        <img src="img/mare/mare-7.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">LUCE</div>
       </div>
       <div class="vortex-item" data-phrase="RISPLENDI">
-        <img src="img/gallery-5.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <img src="img/mare/mare-9.jpg" alt="Cinzia Rosato" loading="lazy"/>
         <div class="vortex-phrase">RISPLENDI</div>
       </div>
     </div>
-    <!-- Etichetta frase attiva -->
     <div class="vortex-label" id="vortex-label">DISCIPLINA</div>
+
+    <!-- Navigazione frecce -->
+    <button class="vortex-nav-btn vortex-prev" id="vortex-prev" aria-label="Precedente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15,18 9,12 15,6"/></svg>
+    </button>
+    <button class="vortex-nav-btn vortex-next" id="vortex-next" aria-label="Successivo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9,6 15,12 9,18"/></svg>
+    </button>
+    <div class="vortex-swipe-hint">← scorri →</div>
   </div>
 </section>
-</div><!-- /gallery-scroll-space -->
 
 <!-- CONTATTI -->
 <section id="contatti">

@@ -467,6 +467,36 @@ nav {
 }
 .vc-dot.active { background: var(--teal); transform: scale(1.35); }
 
+/* ===== VIDEO CAROUSEL — text slides ===== */
+.vc-chisono { padding: 8px 0 40px; }
+
+.vc-text-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 28px 22px !important;
+  background: linear-gradient(145deg, var(--bg-3) 0%, var(--bg-4) 100%) !important;
+  border: 1px solid rgba(15,184,176,.22) !important;
+  text-align: center !important;
+  gap: 16px !important;
+}
+.vct-line {
+  width: 32px; height: 1px;
+  background: var(--teal); opacity: .38;
+}
+.vct-word {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--teal);
+}
+.vct-desc {
+  font-size: .84rem; color: var(--muted);
+  line-height: 1.75; max-width: 165px;
+  font-style: italic;
+}
+
 /* ===== CREDENZIALI AGONISTICHE (ex palmares) ===== */
 #risultati { background: rgba(5,13,17,.88); }
 
@@ -638,48 +668,52 @@ nav {
 .metodo-step h3 { font-size: 1.05rem; color: var(--white); margin-bottom: 12px; }
 .metodo-step p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
 
-/* ===== GALLERY — MARQUEE INFINITO ===== */
-#gallery { background: rgba(5,13,17,.86); padding-bottom: 0; overflow: hidden; }
-#gallery .container { margin-bottom: 48px; }
-
-/* ===== VORTEX 3D GALLERY ===== */
-/* Wrapper alto che crea spazio per lo scroll-driven */
-.gallery-scroll-space {
-  height: 340vh;
-  position: relative;
-}
-/* Sezione sticky — rimane a schermo mentre si scorre il wrapper */
-.gallery-sticky-wrap {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+/* ===== GALLERY — COVERFLOW INTERATTIVO ===== */
+#gallery {
+  background: rgba(5,13,17,.86);
+  padding: 80px 0 0;
   overflow: hidden;
-  padding-top: 0;
-  padding-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  user-select: none; /* evita selezione testo durante drag */
 }
-.gallery-sticky-wrap .container { flex-shrink: 0; padding-top: 60px; }
-#gallery { padding-bottom: 0; }
-.gallery-hint {
-  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--muted); margin-top: 8px;
-  display: flex; align-items: center; gap: 8px;
-}
-.gallery-hint::after {
-  content: '↓';
-  animation: bounceDown .9s ease-in-out infinite alternate;
-}
-@keyframes bounceDown { from { transform: translateY(0); } to { transform: translateY(5px); } }
+#gallery .container { margin-bottom: 32px; }
 
 .vortex-stage {
-  height: 100vh;
+  height: 78vh;
+  min-height: 480px;
   position: relative;
-  overflow: visible; /* coverflow: le card ai lati escono oltre lo stage, clippate dalla sticky-wrap */
+  overflow: hidden; /* clip ai bordi del viewport */
   display: flex; align-items: center; justify-content: center;
   perspective: 1200px;
   perspective-origin: 50% 50%;
+  cursor: grab;
+}
+.vortex-stage:active { cursor: grabbing; }
+
+/* Frecce di navigazione gallery */
+.vortex-nav-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(15,184,176,.1); backdrop-filter: blur(8px);
+  border: 1px solid rgba(15,184,176,.3);
+  color: var(--teal); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 20; transition: background .2s, transform .2s;
+}
+.vortex-nav-btn:hover { background: rgba(15,184,176,.22); transform: translateY(-50%) scale(1.1); }
+.vortex-nav-btn svg { width: 20px; height: 20px; }
+.vortex-prev { left: 24px; }
+.vortex-next { right: 24px; }
+
+/* Hint scroll orizzontale */
+.vortex-swipe-hint {
+  position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+  font-size: .65rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(15,184,176,.4);
+  pointer-events: none; white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .vortex-nav-btn { display: none; }
+  .vortex-stage { height: 65vh; min-height: 380px; }
 }
 .vortex-ring {
   width: 300px; height: 400px;

@@ -404,58 +404,100 @@ window.addEventListener('load', function() {
     y: 80, ease: 'none'
   });
 
-  /* ---- COVERFLOW 3D GALLERY (CSS sticky, nessun pin GSAP) ---- */
+  /* ---- COVERFLOW CIRCOLARE — auto-avanzamento + wheel/swipe/frecce ---- */
   (function() {
-    var ring  = document.getElementById('vortex-ring');
-    var label = document.getElementById('vortex-label');
-    if (!ring) return;
+    var ringEl  = document.getElementById('vortex-ring');
+    var label   = document.getElementById('vortex-label');
+    var stage   = document.querySelector('.vortex-stage');
+    var prevBtn = document.getElementById('vortex-prev');
+    var nextBtn = document.getElementById('vortex-next');
+    if (!ringEl) return;
 
-    var items = Array.from(ring.querySelectorAll('.vortex-item'));
-    var N     = items.length;
-    var isMob = window.innerWidth < 768;
-    var spread = isMob ? 230 : 330; /* distanza orizzontale tra le card */
+    var items   = Array.from(ringEl.querySelectorAll('.vortex-item'));
+    var N       = items.length;
+    var isMob   = window.innerWidth < 768;
+    var spread  = isMob ? 240 : 340;
+    var cur     = 0;   /* posizione float corrente — può superare N, è circolare */
+    var target  = 0;
+    var tween   = { val: 0 };
+    var activeTw;
 
-    function updateCoverflow(progress) {
-      var floatIdx = progress * (N - 1);
-      var frontIdx = 0; var minDist = 999;
-
+    function draw(f) {
+      cur = f;
+      /* f normalizzato in 0..N (circolare) */
+      var nf = ((f % N) + N) % N;
+      var front = 0; var best = 999;
       items.forEach(function(item, i) {
-        var offset = i - floatIdx;
-        var absOff = Math.abs(offset);
-
-        /* posizione e profondità */
-        var tx = offset * spread;
-        var tz = -absOff * 85;
-        var ry = -Math.min(Math.max(offset * 18, -38), 38);
-        var sc = Math.max(0.6, 1 - absOff * 0.15);
-        var op = Math.max(0.25, 1 - absOff * 0.27);
-
+        /* offset circolare: percorso più breve intorno al ring */
+        var off = ((i - nf + N + N / 2) % N) - N / 2;
+        var abs = Math.abs(off);
         gsap.set(item, {
-          x: tx, z: tz, rotateY: ry, scale: sc, opacity: op,
-          zIndex: Math.round(20 - absOff * 4)
+          x: off * spread,
+          z: -abs * 85,
+          rotateY: -Math.max(-38, Math.min(38, off * 18)),
+          scale:   Math.max(0.60, 1 - abs * 0.15),
+          opacity: Math.max(0.25, 1 - abs * 0.27),
+          zIndex:  Math.round(20 - abs * 4)
         });
-
-        if (absOff < minDist) { minDist = absOff; frontIdx = i; }
-        item.classList.toggle('is-front', absOff < 0.52);
+        item.classList.toggle('is-front', abs < 0.52);
+        if (abs < best) { best = abs; front = i; }
       });
-
-      if (label && items[frontIdx]) {
-        label.textContent = items[frontIdx].dataset.phrase || '';
-      }
+      if (label && items[front]) label.textContent = items[front].dataset.phrase || '';
     }
 
-    /* Init e scroll-driven */
-    updateCoverflow(0);
+    function goTo(delta) {
+      target += delta;
+      if (activeTw) activeTw.kill();
+      tween.val = cur;
+      activeTw = gsap.to(tween, {
+        val: target, duration: 0.65, ease: 'power2.out',
+        onUpdate: function() { draw(tween.val); }
+      });
+    }
 
-    gsap.to({}, {
-      scrollTrigger: {
-        trigger: '.gallery-scroll-space',
-        start:   'top top',
-        end:     'bottom bottom',
-        scrub:   2,
-        onUpdate: function(self) { updateCoverflow(self.progress); }
-      }
+    /* Init — circolare: item N-1 appare a sinistra di item 0 fin dall'inizio */
+    draw(0);
+
+    /* Bottoni */
+    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(1); });
+
+    /* Tastiera */
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(1); }
     });
+
+    /* Mouse wheel — throttled */
+    var wThrottle = false;
+    if (stage) {
+      stage.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        if (wThrottle) return;
+        wThrottle = true; setTimeout(function() { wThrottle = false; }, 550);
+        var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        goTo(d > 0 ? 1 : -1);
+      }, { passive: false });
+    }
+
+    /* Touch swipe */
+    var tsX = 0;
+    if (stage) {
+      stage.addEventListener('touchstart', function(e) { tsX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].clientX - tsX;
+        if (Math.abs(dx) > 44) goTo(dx < 0 ? 1 : -1);
+      }, { passive: true });
+    }
+
+    /* Auto-avanzamento ogni 4.5s — si ferma su hover */
+    var autoTimer = setInterval(function() { goTo(1); }, 4500);
+    if (stage) {
+      stage.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
+      stage.addEventListener('mouseleave', function() {
+        autoTimer = setInterval(function() { goTo(1); }, 4500);
+      });
+    }
   })();
 });
 
