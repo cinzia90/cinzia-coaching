@@ -370,8 +370,7 @@ nav {
 .chisono-video-box {
   position: relative;
   border-radius: 20px; overflow: hidden;
-  aspect-ratio: 9 / 16;
-  max-height: 600px;
+  height: 540px;          /* altezza fissa desktop: box ritratto nella colonna ~480px */
   background: var(--bg-3);
   border: 1px solid rgba(15,184,176,.12);
   box-shadow: 0 0 60px rgba(15,184,176,.06), 0 40px 80px rgba(0,0,0,.4);
@@ -998,7 +997,8 @@ footer {
 @media (max-width: 768px) {
   /* Credenziali mobile */
   .cred-wrap { grid-template-columns: 1fr; gap: 36px; }
-  .cred-media { height: 72vw; max-height: 420px; }
+  /* aspect-ratio portrait: niente taglio su foto verticali di gara */
+  .cred-media { height: auto; aspect-ratio: 4 / 5; }
   /* Video carousel mobile */
   .vc-slide { flex: 0 0 180px; height: 320px; }
   .vc-prev { left: 8px; }
@@ -1034,8 +1034,8 @@ footer {
   .hero-photo-wrap { order: -1; height: clamp(300px, 60vw, 420px); }
   .hero-title { font-size: 3rem; }
   .chisono-inner { grid-template-columns: 1fr; gap: 32px; }
-  /* Box video portrait su mobile: aspect-ratio 3/4 = ritratto senza essere troppo lungo */
-  .chisono-video-box { aspect-ratio: 3 / 4; max-height: 80vw; }
+  /* aspect-ratio 9/16 = proporzione reale dei video verticali, nessun taglio */
+  .chisono-video-box { height: auto; aspect-ratio: 9 / 16; }
   .cs-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
   .comp-cinematic { grid-template-columns: 1fr; min-height: auto; }
   .comp-scene { min-height: 380px; }
