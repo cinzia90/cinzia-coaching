@@ -48,9 +48,7 @@ body {
 }
 .pre-logo-wrap { opacity: 0; transform: scale(.88); }
 .pre-logo {
-  height: 200px; width: auto; max-width: 90vw; display: block;
-  mix-blend-mode: screen;
-  filter: brightness(1.12) saturate(1.05);
+  height: 200px; width: auto; max-width: 80vw; display: block;
 }
 .pre-logo-svg { height: 58px; width: auto; color: var(--teal); }
 .pre-tagline {
@@ -106,10 +104,7 @@ body {
 
 /* ===== LOGO IMG (quando il file è salvato) ===== */
 .logo-img {
-  height: 55px; width: auto; display: block;
-  mix-blend-mode: screen;
-  /* nessun hue-rotate: il rosa gold del logo si vede nel colore originale */
-  filter: brightness(1.1) saturate(1.05);
+  height: 48px; width: auto; display: block;
   transition: opacity .25s, transform .3s;
 }
 .logo-img:hover { opacity: .82; transform: scale(1.03); }
@@ -955,9 +950,7 @@ footer {
   gap: 40px; margin-bottom: 40px;
 }
 .footer-logo-img {
-  height: 80px; width: auto; max-width: 200px; display: block;
-  mix-blend-mode: screen;
-  filter: brightness(1.1) saturate(1.05);
+  height: 80px; width: auto; max-width: 220px; display: block;
   margin-bottom: 14px;
 }
 .footer-logo-svg { height: 52px; width: auto; color: var(--teal); margin-bottom: 14px; opacity: .65; }
