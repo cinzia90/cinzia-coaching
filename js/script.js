@@ -648,7 +648,9 @@ function initSpotlightCarousel(wrapId, trackId, prevId, nextId, dotsId, autoDela
   function getDots() { return dotsWrap ? Array.from(dotsWrap.querySelectorAll('.vc-dot')) : []; }
 
   function goTo(idx, noAuto) {
-    idx = ((idx % N) + N) % N;
+    /* Next wrappa (0...N-1→0). Prev si ferma a 0: nessun salto verso N-1 */
+    if (idx < 0) idx = 0;
+    if (idx >= N) idx = 0; /* next dopo ultima → torna a prima */
     current = idx;
     track.style.transform = 'translateX(' + offsetForIdx(idx) + 'px)';
     slides.forEach(function(s, i) {
@@ -657,6 +659,8 @@ function initSpotlightCarousel(wrapId, trackId, prevId, nextId, dotsId, autoDela
       if (v) { if (i === idx) v.play().catch(function(){}); else v.pause(); }
     });
     getDots().forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    /* Aggiorna visibilità frecce */
+    if (prevBtn) prevBtn.style.opacity = idx === 0 ? '0.25' : '1';
     if (!noAuto) resetAuto();
   }
 
@@ -690,7 +694,7 @@ function initSpotlightCarousel(wrapId, trackId, prevId, nextId, dotsId, autoDela
   track.addEventListener('touchstart', function(e) { tsX = e.touches[0].clientX; }, { passive: true });
   track.addEventListener('touchend',   function(e) {
     var dx = e.changedTouches[0].clientX - tsX;
-    if (Math.abs(dx) > 44) goTo(dx < 0 ? current + 1 : current - 1);
+    if (Math.abs(dx) > 44) goTo(dx < 0 ? current + 1 : Math.max(0, current - 1));
   }, { passive: true });
 
   if (wrap) {
