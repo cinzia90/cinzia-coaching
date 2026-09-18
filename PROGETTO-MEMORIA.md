@@ -6,6 +6,24 @@
 
 ---
 
+## Revisione testi — 2026-09-18
+
+Modifiche di copywriting applicate a `index.html`, approvate punto per punto con la cliente:
+
+1. **Certificazioni "Chi sono"** — sostituita la card generica "PT Certificata" con due card specifiche: *Project inVictus* (Formazione in Allenamento e Alimentazione) e *NonSoloFitness* (Diploma PT, abilitazione EPS CONI per strutture sportive).
+2. **Testo intro "Chi sono"** — riscritto: ora racconta origine della formazione (studio allenamento/alimentazione + esperienza agonistica), il metodo personalizzato/sostenibile, e l'approccio basato su analisi/progressione/costanza. Nessun confronto con "schede standard" di altri PT.
+3. **Rimossa la parola "scientifico"** dal sito — card "Metodo Scientifico" → "Basato sull'Evidenza — Aggiornato, misurabile, orientato ai risultati".
+4. **Linguaggio alimentazione uniformato** a "consigli alimentari personalizzati" in: card chi-sono, lista percorso Neofila, lista percorso Trasformazione, step 02 del Metodo.
+5. **Palmarès separato dalla formazione** — rimosse dalla griglia "Chi sono" le card "1° Posto IFBB Pugliesi 2025" e "2° Posto Panatta Rimini Contest" (risultati agonistici): restano solo nella sezione dedicata `#risultati`.
+6. **Card "Obiettivi Su Misura"** aggiunta in chi-sono per tornare a 12 card (numero pari, griglia 2 colonne pulita).
+7. **Slogan di brand riallineati:**
+   - Hero (invariato): *"Scegliti. Costruisci. Diventa la tua forza."*
+   - Sezione Metodo: tag "Il metodo", titolo *"Forma. Disciplina. Costanza."* (prima era il titolo della Gallery)
+   - Sezione Percorsi: titolo *"Analizza. Costruisciti. Evolvi."* (il vecchio titolo "Scegli il tuo percorso" è ora nel sottotitolo)
+8. **Sezione Gallery** — rimosso il titolo testuale ("Forma. Disciplina. Costanza." spostato al Metodo); resta solo un'icona SVG a forma di macchina fotografica (`aria-label="Gallery"` per accessibilità, icona in stile line-art coerente con le altre icone del sito).
+
+---
+
 ## Identità del progetto
 
 - **Cliente:** Cinzia Rosato, 36 anni, Lecce
