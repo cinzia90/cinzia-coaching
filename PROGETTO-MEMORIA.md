@@ -13,7 +13,7 @@
 - **Risultati agonistici:** IFBB Pugliesi 2025 (1° Posto), Panatta Rimini Contest (2° Posto)
 - **Contatto WhatsApp:** +39 327 695 6188
 - **Instagram:** @rosatocinzia
-- **Tagline sito:** "Scegliti. Costruisciti. Risplendi."
+- **Tagline sito:** "Scegliti. Costruisci. Diventa la tua forza."
 
 ---
 
@@ -141,7 +141,7 @@ Usare SEMPRE `requestAnimationFrame(_lenisRaf)`.
 
 Sequenza animazione (GSAP timeline):
 1. Logo appare (scale da 0.88 a 1, opacity 0→1)
-2. Parole "Scegliti. Costruisciti. Risplendi." entrano a stagger
+2. Parole "Scegliti. Costruisci. Diventa la tua forza." entrano a stagger
 3. Barra di caricamento si riempie (1.6s)
 4. Tendina teal sale dal basso
 5. Tutto vola in alto e preloader sparisce
