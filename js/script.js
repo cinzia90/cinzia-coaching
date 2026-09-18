@@ -78,6 +78,8 @@
       M.mare.forEach(function(item) {
         var div = document.createElement('div');
         div.className = 'vortex-item';
+        div.dataset.phraseIt = item.phrase;
+        div.dataset.phraseEn = item.en || item.phrase;
         div.dataset.phrase = item.phrase;
         div.innerHTML = '<img src="img/mare/' + item.file + '" alt="Cinzia Rosato" loading="lazy"/><div class="vortex-phrase">' + item.phrase + '</div>';
         ring.appendChild(div);
@@ -736,3 +738,281 @@ if (form) {
     setTimeout(function() { btn.textContent = orig; btn.style.background = ''; form.reset(); }, 3000);
   });
 }
+
+/* ----------------------------------------------------------------
+   LINGUA IT/EN — dizionario + toggle
+   ---------------------------------------------------------------- */
+var I18N = {
+  it: {
+    meta: {
+      title: 'Cinzia Rosato – Personal Trainer | Coaching Online',
+      description: 'Cinzia Rosato, atleta IFBB e personal trainer di Lecce. Coaching online personalizzato. Pugliesi 2025 – 1° Posto.'
+    },
+    nav: { chiSono: 'Chi sono', palmares: 'Palmares', percorsi: 'Percorsi', gallery: 'Gallery', contatti: 'Contatti', cta: 'Inizia ora' },
+    hero: {
+      badge: 'IFBB &nbsp;·&nbsp; Pugliesi 2025 &nbsp;·&nbsp; 1° Posto',
+      tag: 'Personal Trainer &middot; Coaching Online &middot; Tutta Italia',
+      title: { w1: 'Scegliti.', w2: 'Costruisci.', w3a: 'Diventa', w3b: 'la tua', w3c: 'forza.' },
+      sub: 'Non basta allenarsi &mdash; serve un metodo. Percorsi nati dall&rsquo;esperienza agonistica, costruiti su di te, per risultati autentici.',
+      cta1: 'Inizia il tuo percorso',
+      cta2: 'Scopri i percorsi'
+    },
+    chisono: {
+      tag: 'Chi sono',
+      title: 'Sono <em>Cinzia Rosato</em>',
+      intro: 'Personal Trainer certificata e atleta IFBB Bikini Fitness. La mia formazione nasce dallo studio dell&rsquo;allenamento e dell&rsquo;alimentazione e si &egrave; sviluppata attraverso l&rsquo;esperienza diretta del percorso agonistico. Ho scelto di trasformare quello che ho imparato in un metodo di lavoro concreto, personalizzato e sostenibile, pensato per accompagnare ogni persona dal proprio punto di partenza verso il proprio obiettivo. Credo nell&rsquo;analisi, nella progressione e nella costanza: per questo costruisco percorsi mirati, cuciti su misura di chi li segue. Dal palco di gara alla tua quotidianit&agrave;.',
+      card1:  { title: 'Project inVictus',            sub: 'Formazione in Allenamento e Alimentazione' },
+      card2:  { title: 'NonSoloFitness',               sub: 'Diploma PT, abilitazione EPS CONI per strutture sportive' },
+      card3:  { title: 'IFBB Bikini Fitness',          sub: 'Atleta agonista nazionale' },
+      card4:  { title: 'Coaching Online',              sub: 'Seguo clienti in tutta Italia' },
+      card5:  { title: 'Piano su misura',              sub: 'Zero schede generiche' },
+      card6:  { title: 'Consigli Alimentari &amp; Training', sub: 'Approccio integrato' },
+      card7:  { title: 'Supporto Diretto',             sub: 'Disponibile h24 per i miei clienti' },
+      card8:  { title: 'Formazione Continua',          sub: 'Studio costante per offrirti il meglio' },
+      card9:  { title: 'Trasformazione Reale',         sub: 'Corpo, mente e stile di vita' },
+      card10: { title: 'Posing Coach',                 sub: 'Tecnica e presenza sul palco' },
+      card11: { title: 'Analisi del Movimento',        sub: 'Tecnica corretta, sempre' },
+      card12: { title: 'Obiettivi Su Misura',          sub: 'Il percorso costruito sul tuo obiettivo specifico' },
+      cta: 'Contattami su WhatsApp'
+    },
+    palmares: {
+      tag: 'Palmares',
+      title: 'La disciplina <em>prima di tutto</em>',
+      sub: 'Il palco ha insegnato cosa significa davvero essere disciplinati. Quella lezione &egrave; il cuore del mio metodo.',
+      lead: 'Ho scelto di gareggiare non per costruirmi una vetrina &mdash; ma per capire cosa significa davvero portare un corpo al massimo. L&rsquo;allenamento preciso, la preparazione studiata, la testa che non si arrende. &Egrave; quello che trasferisco ogni giorno ai miei clienti.',
+      award1: { class: 'Bikini Fitness &middot; 1&ordf; Classe &middot; FIT ITALY', pos: '1° POSTO' },
+      award2: { class: 'Bikini Fitness &middot; 2&ordf; Classe &middot; FIT ITALY', pos: '2° POSTO' },
+      cta: 'Porta quel metodo nel tuo percorso &rarr;'
+    },
+    percorsi: {
+      tag: 'Percorsi',
+      title: 'Analizza. Costruisciti. <em>Evolvi.</em>',
+      sub: 'Scegli il tuo percorso: due cammini pensati per livelli diversi. Stesso metodo, stesso impegno, risultati reali.',
+      p1: {
+        h3: 'Neofila', label: 'Per chi inizia da zero',
+        desc: 'Non sai da dove partire? Ti accompagno passo dopo passo, con un percorso graduale e sicuro pensato per la tua situazione attuale.',
+        li1: 'Colloquio iniziale gratuito e senza impegno',
+        li2: 'Scheda di allenamento su misura per principianti',
+        li3: 'Consigli alimentari personalizzati, semplici e pratici',
+        li4: 'Spiegazione degli esercizi e della tecnica corretta',
+        li5: 'Check periodici e progressione guidata',
+        li6: 'Supporto e motivazione costante',
+        cta: 'Prenota il consulto gratuito'
+      },
+      p2: {
+        h3: 'Trasformazione', label: 'Per chi si allena e vuole risultati seri',
+        desc: 'Hai gi&agrave; esperienza ma ti manca struttura e progressione vera. &Egrave; il momento di fare il salto di qualit&agrave;.',
+        li1: 'Colloquio iniziale gratuito e senza impegno',
+        li2: 'Analisi della scheda attuale e dei punti deboli',
+        li3: 'Programma periodizzato e progressivo su misura',
+        li4: 'Consigli alimentari personalizzati in relazione al tuo percorso',
+        li5: 'Ottimizzazione del recupero e del carico',
+        li6: 'Check periodici intensivi sui progressi',
+        li7: 'Supporto diretto durante tutto il percorso',
+        cta: 'Prenota il consulto gratuito'
+      }
+    },
+    metodo: {
+      tag: 'Il metodo',
+      title: 'Forma. Disciplina. <em>Costanza.</em>',
+      sub: 'Un percorso strutturato in 4 fasi. Nulla &egrave; lasciato al caso.',
+      step1: { h3: 'Colloquio iniziale', p: 'Valutiamo insieme il tuo punto di partenza, i tuoi obiettivi e la tua storia. Gratuito, senza impegno, senza giudizi.' },
+      step2: { h3: 'Piano su misura', p: 'Scheda di allenamento e consigli alimentari personalizzati costruiti su di te. Non schede standard: il tuo piano, per il tuo corpo.' },
+      step3: { h3: 'Check periodici', p: 'Il percorso viene monitorato. Valutiamo i progressi, analizziamo i risultati e aggiustiamo il tiro quando serve.' },
+      step4: { h3: 'Supporto costante', p: 'Non sei mai da solo. Supporto diretto h24 per dubbi, correzioni e motivazione. Il coaching &egrave; presenza, non solo una scheda.' }
+    },
+    contatti: {
+      tag: 'Contatti',
+      title: 'Inizia il tuo <em>cambiamento</em>',
+      sub: 'Compila il modulo: ti contatto io direttamente via WhatsApp per valutare insieme da dove partire. Il consulto &egrave; gratuito e senza impegno.',
+      wa: { label: 'Scrivimi direttamente' },
+      where: { h4: 'Dove', p: 'Lecce &mdash; Coaching online in tutta Italia' },
+      form: {
+        title: 'Prenota il consulto gratuito',
+        nome: 'Nome', cognome: 'Cognome', telefono: 'Telefono / WhatsApp',
+        email: 'Email <span class="label-opt">(facoltativa)</span>',
+        percorso: 'Tipo di percorso', obiettivo: 'Il tuo obiettivo',
+        ph: { nome: 'Il tuo nome', cognome: 'Il tuo cognome', obiettivo: 'Descrivi brevemente il tuo obiettivo…' },
+        opt0: 'Seleziona il percorso',
+        opt1: 'Neofila &ndash; Inizio da zero',
+        opt2: 'Trasformazione &ndash; Ho gi&agrave; esperienza',
+        opt3: 'Non so ancora &ndash; voglio un consiglio',
+        submit: 'Invia su WhatsApp &rarr;'
+      }
+    },
+    footer: {
+      brand: 'Personal Trainer &middot; Atleta IFBB<br>Coaching online &mdash; Lecce',
+      linkrapidi: 'Link rapidi', percorsiHeader: 'Percorsi', contattiHeader: 'Contatti',
+      copyright: '&copy; 2026 Cinzia Rosato &ndash; Personal Trainer. Tutti i diritti riservati.'
+    },
+    vortex: { prev: 'Precedente', next: 'Successivo' }
+  },
+  en: {
+    meta: {
+      title: 'Cinzia Rosato – Personal Trainer | Online Coaching',
+      description: "Cinzia Rosato, IFBB athlete and personal trainer from Lecce, Italy. Personalized online coaching. Pugliesi 2025 – 1st Place."
+    },
+    nav: { chiSono: 'About', palmares: 'Achievements', percorsi: 'Paths', gallery: 'Gallery', contatti: 'Contact', cta: 'Get started' },
+    hero: {
+      badge: 'IFBB &nbsp;·&nbsp; Pugliesi 2025 &nbsp;·&nbsp; 1st Place',
+      tag: 'Personal Trainer &middot; Online Coaching &middot; All Italy',
+      title: { w1: 'Choose yourself.', w2: 'Build.', w3a: 'Become', w3b: 'your', w3c: 'strength.' },
+      sub: "Training alone isn&rsquo;t enough &mdash; you need a method. Paths born from competitive experience, built around you, for authentic results.",
+      cta1: 'Start your journey',
+      cta2: 'Discover the paths'
+    },
+    chisono: {
+      tag: 'About me',
+      title: 'I am <em>Cinzia Rosato</em>',
+      intro: "Certified Personal Trainer and IFBB Bikini Fitness athlete. My training began with the study of exercise and nutrition, and grew through direct experience on the competitive stage. I chose to turn what I learned into a concrete, personalized and sustainable working method, built to guide every person from their own starting point toward their own goal. I believe in analysis, progression and consistency: that&rsquo;s why I build targeted paths, tailored to whoever follows them. From the competition stage to your everyday life.",
+      card1:  { title: 'Project inVictus',       sub: 'Training and Nutrition Education' },
+      card2:  { title: 'NonSoloFitness',          sub: 'PT Diploma, EPS CONI certification for sports facilities' },
+      card3:  { title: 'IFBB Bikini Fitness',     sub: 'National competitive athlete' },
+      card4:  { title: 'Online Coaching',         sub: 'I coach clients all across Italy' },
+      card5:  { title: 'Tailored Plan',           sub: 'Zero generic templates' },
+      card6:  { title: 'Nutrition Advice &amp; Training', sub: 'Integrated approach' },
+      card7:  { title: 'Direct Support',          sub: 'Available 24/7 for my clients' },
+      card8:  { title: 'Ongoing Education',       sub: 'Constant study to offer you the best' },
+      card9:  { title: 'Real Transformation',     sub: 'Body, mind and lifestyle' },
+      card10: { title: 'Posing Coach',            sub: 'Technique and stage presence' },
+      card11: { title: 'Movement Analysis',       sub: 'Correct technique, always' },
+      card12: { title: 'Tailored Goals',          sub: 'A path built around your specific goal' },
+      cta: 'Message me on WhatsApp'
+    },
+    palmares: {
+      tag: 'Achievements',
+      title: 'Discipline <em>above all</em>',
+      sub: 'The stage taught me what real discipline means. That lesson is the heart of my method.',
+      lead: "I chose to compete not to build a showcase for myself, but to understand what it truly means to push a body to its limit. Precise training, careful preparation, a mind that never gives up. That&rsquo;s what I pass on to my clients every day.",
+      award1: { class: 'Bikini Fitness &middot; 1st Class &middot; FIT ITALY', pos: '1st PLACE' },
+      award2: { class: 'Bikini Fitness &middot; 2nd Class &middot; FIT ITALY', pos: '2nd PLACE' },
+      cta: 'Bring that method into your journey &rarr;'
+    },
+    percorsi: {
+      tag: 'Paths',
+      title: 'Analyze. Build yourself. <em>Evolve.</em>',
+      sub: 'Choose your path: two journeys designed for different levels. Same method, same commitment, real results.',
+      p1: {
+        h3: 'Beginner', label: 'For those starting from scratch',
+        desc: "Not sure where to start? I&rsquo;ll guide you step by step, with a gradual and safe path designed for where you are right now.",
+        li1: 'Free, no-obligation initial consultation',
+        li2: 'Training plan tailored for beginners',
+        li3: 'Personalized nutrition advice, simple and practical',
+        li4: 'Explanation of exercises and correct technique',
+        li5: 'Periodic check-ins and guided progression',
+        li6: 'Ongoing support and motivation',
+        cta: 'Book your free consultation'
+      },
+      p2: {
+        h3: 'Transformation', label: 'For those who train and want serious results',
+        desc: "You already have experience but lack real structure and progression. It&rsquo;s time to take the next step.",
+        li1: 'Free, no-obligation initial consultation',
+        li2: 'Analysis of your current plan and weak points',
+        li3: 'Tailored, periodized and progressive program',
+        li4: 'Personalized nutrition advice aligned with your path',
+        li5: 'Recovery and training load optimization',
+        li6: 'Intensive periodic progress check-ins',
+        li7: 'Direct support throughout the entire path',
+        cta: 'Book your free consultation'
+      }
+    },
+    metodo: {
+      tag: 'The method',
+      title: 'Form. Discipline. <em>Consistency.</em>',
+      sub: 'A journey structured in 4 phases. Nothing is left to chance.',
+      step1: { h3: 'Initial consultation', p: 'Together we assess your starting point, your goals and your story. Free, no obligation, no judgment.' },
+      step2: { h3: 'Tailored plan', p: 'A training plan and personalized nutrition advice built around you. Not a standard template: your plan, for your body.' },
+      step3: { h3: 'Periodic check-ins', p: 'The path is monitored. We assess progress, analyze results and adjust course whenever needed.' },
+      step4: { h3: 'Constant support', p: "You&rsquo;re never alone. Direct 24/7 support for questions, corrections and motivation. Coaching means being present, not just a plan on paper." }
+    },
+    contatti: {
+      tag: 'Contact',
+      title: 'Start your <em>change</em>',
+      sub: "Fill out the form: I&rsquo;ll contact you directly on WhatsApp so we can figure out together where to start. The consultation is free, no obligation.",
+      wa: { label: 'Message me directly' },
+      where: { h4: 'Location', p: 'Lecce, Italy &mdash; Online coaching across Italy' },
+      form: {
+        title: 'Book your free consultation',
+        nome: 'First name', cognome: 'Last name', telefono: 'Phone / WhatsApp',
+        email: 'Email <span class="label-opt">(optional)</span>',
+        percorso: 'Type of path', obiettivo: 'Your goal',
+        ph: { nome: 'Your first name', cognome: 'Your last name', obiettivo: 'Briefly describe your goal…' },
+        opt0: 'Select your path',
+        opt1: 'Beginner &ndash; Starting from scratch',
+        opt2: 'Transformation &ndash; I already have experience',
+        opt3: "Not sure yet &ndash; I&rsquo;d like some advice",
+        submit: 'Send via WhatsApp &rarr;'
+      }
+    },
+    footer: {
+      brand: 'Personal Trainer &middot; IFBB Athlete<br>Online coaching &mdash; Lecce, Italy',
+      linkrapidi: 'Quick links', percorsiHeader: 'Paths', contattiHeader: 'Contact',
+      copyright: '&copy; 2026 Cinzia Rosato &ndash; Personal Trainer. All rights reserved.'
+    },
+    vortex: { prev: 'Previous', next: 'Next' }
+  }
+};
+
+function i18nGet(lang, key) {
+  var parts = key.split('.');
+  var node = I18N[lang];
+  for (var i = 0; i < parts.length; i++) {
+    if (!node) return null;
+    node = node[parts[i]];
+  }
+  return typeof node === 'string' ? node : null;
+}
+
+function applyLanguage(lang) {
+  if (!I18N[lang]) lang = 'it';
+  document.documentElement.lang = lang;
+
+  var metaTitle = i18nGet(lang, 'meta.title');
+  var metaDesc  = i18nGet(lang, 'meta.description');
+  if (metaTitle) document.title = metaTitle;
+  var metaEl = document.querySelector('meta[name="description"]');
+  if (metaEl && metaDesc) metaEl.setAttribute('content', metaDesc);
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var val = i18nGet(lang, el.getAttribute('data-i18n'));
+    if (val !== null) el.innerHTML = val;
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var val = i18nGet(lang, el.getAttribute('data-i18n-placeholder'));
+    if (val !== null) el.setAttribute('placeholder', val);
+  });
+
+  var prevBtn = document.getElementById('vortex-prev');
+  var nextBtn = document.getElementById('vortex-next');
+  if (prevBtn) prevBtn.setAttribute('aria-label', i18nGet(lang, 'vortex.prev') || 'Precedente');
+  if (nextBtn) nextBtn.setAttribute('aria-label', i18nGet(lang, 'vortex.next') || 'Successivo');
+
+  document.querySelectorAll('.vortex-item').forEach(function(item) {
+    var val = lang === 'en' ? item.dataset.phraseEn : item.dataset.phraseIt;
+    item.dataset.phrase = val;
+    var phraseEl = item.querySelector('.vortex-phrase');
+    if (phraseEl) phraseEl.textContent = val;
+  });
+  var vLabel = document.getElementById('vortex-label');
+  if (vLabel) {
+    var frontItem = document.querySelector('.vortex-item.is-front') || document.querySelector('.vortex-item');
+    if (frontItem) vLabel.textContent = frontItem.dataset.phrase;
+  }
+
+  var nextLangLabel = lang === 'it' ? 'EN' : 'IT';
+  document.querySelectorAll('.lang-toggle-label').forEach(function(el) { el.textContent = nextLangLabel; });
+
+  try { localStorage.setItem('cinzia_lang', lang); } catch (e) {}
+}
+
+function toggleLanguage() {
+  var current = document.documentElement.lang === 'en' ? 'en' : 'it';
+  applyLanguage(current === 'it' ? 'en' : 'it');
+}
+
+(function initLanguage() {
+  var saved = 'it';
+  try { saved = localStorage.getItem('cinzia_lang') || 'it'; } catch (e) {}
+  applyLanguage(saved);
+})();

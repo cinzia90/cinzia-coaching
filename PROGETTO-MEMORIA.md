@@ -21,6 +21,19 @@ Modifiche di copywriting applicate a `index.html`, approvate punto per punto con
    - Sezione Metodo: tag "Il metodo", titolo *"Forma. Disciplina. Costanza."* (prima era il titolo della Gallery)
    - Sezione Percorsi: titolo *"Analizza. Costruisciti. Evolvi."* (il vecchio titolo "Scegli il tuo percorso" è ora nel sottotitolo)
 8. **Sezione Gallery** — rimosso il titolo testuale ("Forma. Disciplina. Costanza." spostato al Metodo); resta solo un'icona SVG a forma di macchina fotografica (`aria-label="Gallery"` per accessibilità, icona in stile line-art coerente con le altre icone del sito).
+9. **Card "Basato sull'Evidenza" rinominata** → *"Formazione Continua — Studio costante per offrirti il meglio"* (EN: *"Ongoing Education — Constant study to offer you the best"*).
+
+---
+
+## Multilingua IT/EN — 2026-09-18
+
+Aggiunto un toggle di lingua completo (italiano di default, inglese a richiesta):
+
+- **UI:** icona globo in navbar (desktop e mobile, dentro `.nav-links`/`.nav-mobile` come ultimo `<li>`), mostra la sigla della lingua a cui si passa (es. "EN" mentre il sito è in IT). Classe CSS `.lang-toggle` in `style.css`.
+- **Meccanismo:** attributi `data-i18n="chiave.punto"` (e `data-i18n-placeholder` per i placeholder dei form) su tutti gli elementi testuali di `index.html`. Un dizionario `I18N` in `js/script.js` (in fondo al file) contiene le traduzioni IT/EN per ogni chiave; `applyLanguage(lang)` fa `innerHTML`/`placeholder` swap su tutti gli elementi, aggiorna `<html lang>`, `<title>` e meta description, e salva la preferenza in `localStorage` (`cinzia_lang`).
+- **Copertura:** nav, hero (badge/titolo/sottotitolo/CTA), chi-sono (intro + tutte le 12 card), palmarès, percorsi (entrambe le card con liste), metodo (4 step), form contatti (label, placeholder, opzioni select, bottone), footer, frasi della gallery vortex (`SITE_MEDIA.mare` ha ora anche il campo `en`, gestito in `applyLanguage` via `dataset.phraseIt`/`dataset.phraseEn` sui `.vortex-item`).
+- **Non tradotto (scelta consapevole):** il preloader (tagline "Scegliti. Costruisci. Diventa la tua forza." resta sempre in italiano, è il primo momento di brand prima di ogni interazione) e il messaggio WhatsApp generato dal form (resta in italiano, è indirizzato a Cinzia).
+- **Verifica fatta:** tutte le 114 chiavi `data-i18n`/`data-i18n-placeholder` presenti in `index.html` hanno una traduzione sia IT che EN nel dizionario (controllato via script Node); tag HTML bilanciati; `node --check` su `script.js` senza errori di sintassi.
 
 ---
 

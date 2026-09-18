@@ -94,24 +94,36 @@
       </svg>
     </a>
     <ul class="nav-links">
-      <li><a href="#chi-sono">Chi sono</a></li>
-      <li><a href="#risultati">Palmares</a></li>
-      <li><a href="#percorsi">Percorsi</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contatti">Contatti</a></li>
-      <li><a href="#contatti" class="btn-nav magnetic">Inizia ora</a></li>
+      <li><a href="#chi-sono" data-i18n="nav.chiSono">Chi sono</a></li>
+      <li><a href="#risultati" data-i18n="nav.palmares">Palmares</a></li>
+      <li><a href="#percorsi" data-i18n="nav.percorsi">Percorsi</a></li>
+      <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+      <li><a href="#contatti" data-i18n="nav.contatti">Contatti</a></li>
+      <li><a href="#contatti" class="btn-nav magnetic" data-i18n="nav.cta">Inizia ora</a></li>
+      <li>
+        <button type="button" class="lang-toggle" id="lang-toggle-desktop" onclick="toggleLanguage()" aria-label="Cambia lingua / Change language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a13.5 13.5 0 010 18a13.5 13.5 0 010-18z"/></svg>
+          <span class="lang-toggle-label">EN</span>
+        </button>
+      </li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
   <ul class="nav-mobile hidden" id="nav-mobile">
-    <li><a href="#chi-sono" onclick="closeMenu()">Chi sono</a></li>
-    <li><a href="#risultati" onclick="closeMenu()">Palmares</a></li>
-    <li><a href="#percorsi" onclick="closeMenu()">Percorsi</a></li>
-    <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
-    <li><a href="#contatti" onclick="closeMenu()">Contatti</a></li>
-    <li><a href="#contatti" class="btn-nav" onclick="closeMenu()">Inizia ora</a></li>
+    <li><a href="#chi-sono" onclick="closeMenu()" data-i18n="nav.chiSono">Chi sono</a></li>
+    <li><a href="#risultati" onclick="closeMenu()" data-i18n="nav.palmares">Palmares</a></li>
+    <li><a href="#percorsi" onclick="closeMenu()" data-i18n="nav.percorsi">Percorsi</a></li>
+    <li><a href="#gallery" onclick="closeMenu()" data-i18n="nav.gallery">Gallery</a></li>
+    <li><a href="#contatti" onclick="closeMenu()" data-i18n="nav.contatti">Contatti</a></li>
+    <li><a href="#contatti" class="btn-nav" onclick="closeMenu()" data-i18n="nav.cta">Inizia ora</a></li>
+    <li>
+      <button type="button" class="lang-toggle lang-toggle-mobile-btn" id="lang-toggle-mobile" onclick="toggleLanguage()" aria-label="Cambia lingua / Change language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a13.5 13.5 0 010 18a13.5 13.5 0 010-18z"/></svg>
+          <span class="lang-toggle-label">EN</span>
+      </button>
+    </li>
   </ul>
 </nav>
 
@@ -123,25 +135,25 @@
     <div class="hero-text">
       <div class="hero-badge">
         <span class="badge-dot"></span>
-        IFBB &nbsp;·&nbsp; Pugliesi 2025 &nbsp;·&nbsp; 1° Posto
+        <span data-i18n="hero.badge">IFBB &nbsp;·&nbsp; Pugliesi 2025 &nbsp;·&nbsp; 1° Posto</span>
       </div>
-      <span class="hero-tag">Personal Trainer &middot; Coaching Online &middot; Tutta Italia</span>
+      <span class="hero-tag" data-i18n="hero.tag">Personal Trainer &middot; Coaching Online &middot; Tutta Italia</span>
       <h1 class="hero-title" data-skew>
-        <span class="reveal-line"><span class="reveal-word">Scegliti.</span></span>
-        <span class="reveal-line"><span class="reveal-word">Costruisci.</span></span>
+        <span class="reveal-line"><span class="reveal-word" data-i18n="hero.title.w1">Scegliti.</span></span>
+        <span class="reveal-line"><span class="reveal-word" data-i18n="hero.title.w2">Costruisci.</span></span>
         <span class="reveal-line reveal-dtf">
-          <span class="reveal-word teal-word">Diventa</span>
-          <span class="reveal-word teal-word">la tua</span>
-          <span class="reveal-word teal-word">forza.</span>
+          <span class="reveal-word teal-word" data-i18n="hero.title.w3a">Diventa</span>
+          <span class="reveal-word teal-word" data-i18n="hero.title.w3b">la tua</span>
+          <span class="reveal-word teal-word" data-i18n="hero.title.w3c">forza.</span>
         </span>
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub" data-i18n="hero.sub">
         Non basta allenarsi &mdash; serve un metodo. Percorsi nati
         dall&rsquo;esperienza agonistica, costruiti su di te, per risultati autentici.
       </p>
       <div class="hero-ctas">
-        <a href="#contatti" class="btn-primary magnetic">Inizia il tuo percorso</a>
-        <a href="#percorsi" class="btn-outline">Scopri i percorsi</a>
+        <a href="#contatti" class="btn-primary magnetic" data-i18n="hero.cta1">Inizia il tuo percorso</a>
+        <a href="#percorsi" class="btn-outline" data-i18n="hero.cta2">Scopri i percorsi</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -165,98 +177,98 @@
         <div class="chisono-video-box" id="chisono-video-box"></div>
       </div>
       <div class="chisono-text">
-        <span class="section-tag">Chi sono</span>
-        <h2 class="section-title">Sono <em>Cinzia Rosato</em></h2>
-        <p class="chisono-intro">Personal Trainer certificata e atleta IFBB Bikini Fitness. La mia formazione nasce dallo studio dell&rsquo;allenamento e dell&rsquo;alimentazione e si &egrave; sviluppata attraverso l&rsquo;esperienza diretta del percorso agonistico. Ho scelto di trasformare quello che ho imparato in un metodo di lavoro concreto, personalizzato e sostenibile, pensato per accompagnare ogni persona dal proprio punto di partenza verso il proprio obiettivo. Credo nell&rsquo;analisi, nella progressione e nella costanza: per questo costruisco percorsi mirati, cuciti su misura di chi li segue. Dal palco di gara alla tua quotidianit&agrave;.</p>
+        <span class="section-tag" data-i18n="chisono.tag">Chi sono</span>
+        <h2 class="section-title" data-i18n="chisono.title">Sono <em>Cinzia Rosato</em></h2>
+        <p class="chisono-intro" data-i18n="chisono.intro">Personal Trainer certificata e atleta IFBB Bikini Fitness. La mia formazione nasce dallo studio dell&rsquo;allenamento e dell&rsquo;alimentazione e si &egrave; sviluppata attraverso l&rsquo;esperienza diretta del percorso agonistico. Ho scelto di trasformare quello che ho imparato in un metodo di lavoro concreto, personalizzato e sostenibile, pensato per accompagnare ogni persona dal proprio punto di partenza verso il proprio obiettivo. Credo nell&rsquo;analisi, nella progressione e nella costanza: per questo costruisco percorsi mirati, cuciti su misura di chi li segue. Dal palco di gara alla tua quotidianit&agrave;.</p>
 
         <div class="cs-cards">
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Project inVictus</strong>
-              <span>Formazione in Allenamento e Alimentazione</span>
+              <strong data-i18n="chisono.card1.title">Project inVictus</strong>
+              <span data-i18n="chisono.card1.sub">Formazione in Allenamento e Alimentazione</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>NonSoloFitness</strong>
-              <span>Diploma PT, abilitazione EPS CONI per strutture sportive</span>
+              <strong data-i18n="chisono.card2.title">NonSoloFitness</strong>
+              <span data-i18n="chisono.card2.sub">Diploma PT, abilitazione EPS CONI per strutture sportive</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>IFBB Bikini Fitness</strong>
-              <span>Atleta agonista nazionale</span>
+              <strong data-i18n="chisono.card3.title">IFBB Bikini Fitness</strong>
+              <span data-i18n="chisono.card3.sub">Atleta agonista nazionale</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Coaching Online</strong>
-              <span>Seguo clienti in tutta Italia</span>
+              <strong data-i18n="chisono.card4.title">Coaching Online</strong>
+              <span data-i18n="chisono.card4.sub">Seguo clienti in tutta Italia</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Piano su misura</strong>
-              <span>Zero schede generiche</span>
+              <strong data-i18n="chisono.card5.title">Piano su misura</strong>
+              <span data-i18n="chisono.card5.sub">Zero schede generiche</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Consigli Alimentari &amp; Training</strong>
-              <span>Approccio integrato</span>
+              <strong data-i18n="chisono.card6.title">Consigli Alimentari &amp; Training</strong>
+              <span data-i18n="chisono.card6.sub">Approccio integrato</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Supporto Diretto</strong>
-              <span>Disponibile h24 per i miei clienti</span>
+              <strong data-i18n="chisono.card7.title">Supporto Diretto</strong>
+              <span data-i18n="chisono.card7.sub">Disponibile h24 per i miei clienti</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Basato sull&rsquo;Evidenza</strong>
-              <span>Aggiornato, misurabile, orientato ai risultati</span>
+              <strong data-i18n="chisono.card8.title">Formazione Continua</strong>
+              <span data-i18n="chisono.card8.sub">Studio costante per offrirti il meglio</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Trasformazione Reale</strong>
-              <span>Corpo, mente e stile di vita</span>
+              <strong data-i18n="chisono.card9.title">Trasformazione Reale</strong>
+              <span data-i18n="chisono.card9.sub">Corpo, mente e stile di vita</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Posing Coach</strong>
-              <span>Tecnica e presenza sul palco</span>
+              <strong data-i18n="chisono.card10.title">Posing Coach</strong>
+              <span data-i18n="chisono.card10.sub">Tecnica e presenza sul palco</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Analisi del Movimento</strong>
-              <span>Tecnica corretta, sempre</span>
+              <strong data-i18n="chisono.card11.title">Analisi del Movimento</strong>
+              <span data-i18n="chisono.card11.sub">Tecnica corretta, sempre</span>
             </div>
           </div>
           <div class="cs-card">
             <span class="cs-card-dot"></span>
             <div class="cs-card-text">
-              <strong>Obiettivi Su Misura</strong>
-              <span>Il percorso costruito sul tuo obiettivo specifico</span>
+              <strong data-i18n="chisono.card12.title">Obiettivi Su Misura</strong>
+              <span data-i18n="chisono.card12.sub">Il percorso costruito sul tuo obiettivo specifico</span>
             </div>
           </div>
         </div>
 
-        <a href="#contatti" class="cta-btn magnetic">Contattami su WhatsApp</a>
+        <a href="#contatti" class="cta-btn magnetic" data-i18n="chisono.cta">Contattami su WhatsApp</a>
       </div>
     </div>
   </div>
@@ -266,9 +278,9 @@
 <section id="risultati">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Palmares</span>
-      <h2 class="section-title">La disciplina <em>prima di tutto</em></h2>
-      <p>Il palco ha insegnato cosa significa davvero essere disciplinati. Quella lezione &egrave; il cuore del mio metodo.</p>
+      <span class="section-tag" data-i18n="palmares.tag">Palmares</span>
+      <h2 class="section-title" data-i18n="palmares.title">La disciplina <em>prima di tutto</em></h2>
+      <p data-i18n="palmares.sub">Il palco ha insegnato cosa significa davvero essere disciplinati. Quella lezione &egrave; il cuore del mio metodo.</p>
     </div>
   </div>
 
@@ -278,26 +290,26 @@
       <div class="cred-media" id="cred-media"></div>
 
       <div class="cred-info">
-        <p class="cred-lead">Ho scelto di gareggiare non per costruirmi una vetrina &mdash; ma per capire cosa significa davvero portare un corpo al massimo. L&rsquo;allenamento preciso, la preparazione studiata, la testa che non si arrende. &Egrave; quello che trasferisco ogni giorno ai miei clienti.</p>
+        <p class="cred-lead" data-i18n="palmares.lead">Ho scelto di gareggiare non per costruirmi una vetrina &mdash; ma per capire cosa significa davvero portare un corpo al massimo. L&rsquo;allenamento preciso, la preparazione studiata, la testa che non si arrende. &Egrave; quello che trasferisco ogni giorno ai miei clienti.</p>
         <div class="award-list">
           <div class="award-item">
             <div class="award-dot gold-dot"></div>
             <div class="award-details">
               <h4>IFBB Pugliesi 2025</h4>
-              <p>Bikini Fitness &middot; 1&ordf; Classe &middot; FIT ITALY</p>
+              <p data-i18n="palmares.award1.class">Bikini Fitness &middot; 1&ordf; Classe &middot; FIT ITALY</p>
             </div>
-            <span class="award-pos award-gold">1° POSTO</span>
+            <span class="award-pos award-gold" data-i18n="palmares.award1.pos">1° POSTO</span>
           </div>
           <div class="award-item">
             <div class="award-dot silver-dot"></div>
             <div class="award-details">
               <h4>Panatta Rimini Contest</h4>
-              <p>Bikini Fitness &middot; 2&ordf; Classe &middot; FIT ITALY</p>
+              <p data-i18n="palmares.award2.class">Bikini Fitness &middot; 2&ordf; Classe &middot; FIT ITALY</p>
             </div>
-            <span class="award-pos award-silver">2° POSTO</span>
+            <span class="award-pos award-silver" data-i18n="palmares.award2.pos">2° POSTO</span>
           </div>
         </div>
-        <a href="#contatti" class="cta-btn magnetic">Porta quel metodo nel tuo percorso &rarr;</a>
+        <a href="#contatti" class="cta-btn magnetic" data-i18n="palmares.cta">Porta quel metodo nel tuo percorso &rarr;</a>
       </div>
     </div>
   </div>
@@ -307,41 +319,41 @@
 <section id="percorsi">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Percorsi</span>
-      <h2 class="section-title">Analizza. Costruisciti. <em>Evolvi.</em></h2>
-      <p>Scegli il tuo percorso: due cammini pensati per livelli diversi. Stesso metodo, stesso impegno, risultati reali.</p>
+      <span class="section-tag" data-i18n="percorsi.tag">Percorsi</span>
+      <h2 class="section-title" data-i18n="percorsi.title">Analizza. Costruisciti. <em>Evolvi.</em></h2>
+      <p data-i18n="percorsi.sub">Scegli il tuo percorso: due cammini pensati per livelli diversi. Stesso metodo, stesso impegno, risultati reali.</p>
     </div>
     <div class="percorsi-grid">
       <div class="percorso-card tilt-card">
         <div class="percorso-num">01</div>
-        <h3>Neofila</h3>
-        <p class="percorso-label">Per chi inizia da zero</p>
-        <p class="percorso-desc">Non sai da dove partire? Ti accompagno passo dopo passo, con un percorso graduale e sicuro pensato per la tua situazione attuale.</p>
+        <h3 data-i18n="percorsi.p1.h3">Neofila</h3>
+        <p class="percorso-label" data-i18n="percorsi.p1.label">Per chi inizia da zero</p>
+        <p class="percorso-desc" data-i18n="percorsi.p1.desc">Non sai da dove partire? Ti accompagno passo dopo passo, con un percorso graduale e sicuro pensato per la tua situazione attuale.</p>
         <ul class="percorso-list">
-          <li>Colloquio iniziale gratuito e senza impegno</li>
-          <li>Scheda di allenamento su misura per principianti</li>
-          <li>Consigli alimentari personalizzati, semplici e pratici</li>
-          <li>Spiegazione degli esercizi e della tecnica corretta</li>
-          <li>Check periodici e progressione guidata</li>
-          <li>Supporto e motivazione costante</li>
+          <li data-i18n="percorsi.p1.li1">Colloquio iniziale gratuito e senza impegno</li>
+          <li data-i18n="percorsi.p1.li2">Scheda di allenamento su misura per principianti</li>
+          <li data-i18n="percorsi.p1.li3">Consigli alimentari personalizzati, semplici e pratici</li>
+          <li data-i18n="percorsi.p1.li4">Spiegazione degli esercizi e della tecnica corretta</li>
+          <li data-i18n="percorsi.p1.li5">Check periodici e progressione guidata</li>
+          <li data-i18n="percorsi.p1.li6">Supporto e motivazione costante</li>
         </ul>
-        <a href="#contatti" class="btn-primary magnetic">Prenota il consulto gratuito</a>
+        <a href="#contatti" class="btn-primary magnetic" data-i18n="percorsi.p1.cta">Prenota il consulto gratuito</a>
       </div>
       <div class="percorso-card featured tilt-card">
         <div class="percorso-num">02</div>
-        <h3>Trasformazione</h3>
-        <p class="percorso-label-dark">Per chi si allena e vuole risultati seri</p>
-        <p class="percorso-desc">Hai gi&agrave; esperienza ma ti manca struttura e progressione vera. &Egrave; il momento di fare il salto di qualit&agrave;.</p>
+        <h3 data-i18n="percorsi.p2.h3">Trasformazione</h3>
+        <p class="percorso-label-dark" data-i18n="percorsi.p2.label">Per chi si allena e vuole risultati seri</p>
+        <p class="percorso-desc" data-i18n="percorsi.p2.desc">Hai gi&agrave; esperienza ma ti manca struttura e progressione vera. &Egrave; il momento di fare il salto di qualit&agrave;.</p>
         <ul class="percorso-list">
-          <li>Colloquio iniziale gratuito e senza impegno</li>
-          <li>Analisi della scheda attuale e dei punti deboli</li>
-          <li>Programma periodizzato e progressivo su misura</li>
-          <li>Consigli alimentari personalizzati in relazione al tuo percorso</li>
-          <li>Ottimizzazione del recupero e del carico</li>
-          <li>Check periodici intensivi sui progressi</li>
-          <li>Supporto diretto durante tutto il percorso</li>
+          <li data-i18n="percorsi.p2.li1">Colloquio iniziale gratuito e senza impegno</li>
+          <li data-i18n="percorsi.p2.li2">Analisi della scheda attuale e dei punti deboli</li>
+          <li data-i18n="percorsi.p2.li3">Programma periodizzato e progressivo su misura</li>
+          <li data-i18n="percorsi.p2.li4">Consigli alimentari personalizzati in relazione al tuo percorso</li>
+          <li data-i18n="percorsi.p2.li5">Ottimizzazione del recupero e del carico</li>
+          <li data-i18n="percorsi.p2.li6">Check periodici intensivi sui progressi</li>
+          <li data-i18n="percorsi.p2.li7">Supporto diretto durante tutto il percorso</li>
         </ul>
-        <a href="#contatti" class="btn-primary-dark magnetic">Prenota il consulto gratuito</a>
+        <a href="#contatti" class="btn-primary-dark magnetic" data-i18n="percorsi.p2.cta">Prenota il consulto gratuito</a>
       </div>
     </div>
   </div>
@@ -351,30 +363,30 @@
 <section id="metodo">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Il metodo</span>
-      <h2 class="section-title">Forma. Disciplina. <em>Costanza.</em></h2>
-      <p>Un percorso strutturato in 4 fasi. Nulla &egrave; lasciato al caso.</p>
+      <span class="section-tag" data-i18n="metodo.tag">Il metodo</span>
+      <h2 class="section-title" data-i18n="metodo.title">Forma. Disciplina. <em>Costanza.</em></h2>
+      <p data-i18n="metodo.sub">Un percorso strutturato in 4 fasi. Nulla &egrave; lasciato al caso.</p>
     </div>
     <div class="metodo-grid">
       <div class="metodo-step">
         <div class="step-number">01</div>
-        <h3>Colloquio iniziale</h3>
-        <p>Valutiamo insieme il tuo punto di partenza, i tuoi obiettivi e la tua storia. Gratuito, senza impegno, senza giudizi.</p>
+        <h3 data-i18n="metodo.step1.h3">Colloquio iniziale</h3>
+        <p data-i18n="metodo.step1.p">Valutiamo insieme il tuo punto di partenza, i tuoi obiettivi e la tua storia. Gratuito, senza impegno, senza giudizi.</p>
       </div>
       <div class="metodo-step">
         <div class="step-number">02</div>
-        <h3>Piano su misura</h3>
-        <p>Scheda di allenamento e consigli alimentari personalizzati costruiti su di te. Non schede standard: il tuo piano, per il tuo corpo.</p>
+        <h3 data-i18n="metodo.step2.h3">Piano su misura</h3>
+        <p data-i18n="metodo.step2.p">Scheda di allenamento e consigli alimentari personalizzati costruiti su di te. Non schede standard: il tuo piano, per il tuo corpo.</p>
       </div>
       <div class="metodo-step">
         <div class="step-number">03</div>
-        <h3>Check periodici</h3>
-        <p>Il percorso viene monitorato. Valutiamo i progressi, analizziamo i risultati e aggiustiamo il tiro quando serve.</p>
+        <h3 data-i18n="metodo.step3.h3">Check periodici</h3>
+        <p data-i18n="metodo.step3.p">Il percorso viene monitorato. Valutiamo i progressi, analizziamo i risultati e aggiustiamo il tiro quando serve.</p>
       </div>
       <div class="metodo-step">
         <div class="step-number">04</div>
-        <h3>Supporto costante</h3>
-        <p>Non sei mai da solo. Supporto diretto h24 per dubbi, correzioni e motivazione. Il coaching &egrave; presenza, non solo una scheda.</p>
+        <h3 data-i18n="metodo.step4.h3">Supporto costante</h3>
+        <p data-i18n="metodo.step4.p">Non sei mai da solo. Supporto diretto h24 per dubbi, correzioni e motivazione. Il coaching &egrave; presenza, non solo una scheda.</p>
       </div>
     </div>
   </div>
@@ -412,15 +424,15 @@
   <div class="container">
     <div class="contatti-inner">
       <div class="contatti-info">
-        <span class="section-tag">Contatti</span>
-        <h2 class="section-title">Inizia il tuo <em>cambiamento</em></h2>
-        <p>Compila il modulo: ti contatto io direttamente via WhatsApp per valutare insieme da dove partire. Il consulto &egrave; gratuito e senza impegno.</p>
+        <span class="section-tag" data-i18n="contatti.tag">Contatti</span>
+        <h2 class="section-title" data-i18n="contatti.title">Inizia il tuo <em>cambiamento</em></h2>
+        <p data-i18n="contatti.sub">Compila il modulo: ti contatto io direttamente via WhatsApp per valutare insieme da dove partire. Il consulto &egrave; gratuito e senza impegno.</p>
         <div class="contact-items">
           <div class="contact-item">
             <div class="contact-icon-wrap">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </div>
-            <div><h4>WhatsApp</h4><a href="https://wa.me/393276956188">Scrivimi direttamente</a></div>
+            <div><h4>WhatsApp</h4><a href="https://wa.me/393276956188" data-i18n="contatti.wa.label">Scrivimi direttamente</a></div>
           </div>
           <div class="contact-item">
             <div class="contact-icon-wrap">
@@ -432,46 +444,46 @@
             <div class="contact-icon-wrap">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
-            <div><h4>Dove</h4><p>Lecce &mdash; Coaching online in tutta Italia</p></div>
+            <div><h4 data-i18n="contatti.where.h4">Dove</h4><p data-i18n="contatti.where.p">Lecce &mdash; Coaching online in tutta Italia</p></div>
           </div>
         </div>
       </div>
       <div class="contact-form-wrap">
         <div class="contact-form-box">
-          <h3>Prenota il consulto gratuito</h3>
+          <h3 data-i18n="contatti.form.title">Prenota il consulto gratuito</h3>
           <form id="contact-form">
             <div class="form-row">
               <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required />
+                <label for="nome" data-i18n="contatti.form.nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Il tuo nome" data-i18n-placeholder="contatti.form.ph.nome" required />
               </div>
               <div class="form-group">
-                <label for="cognome">Cognome</label>
-                <input type="text" id="cognome" name="cognome" placeholder="Il tuo cognome" required />
+                <label for="cognome" data-i18n="contatti.form.cognome">Cognome</label>
+                <input type="text" id="cognome" name="cognome" placeholder="Il tuo cognome" data-i18n-placeholder="contatti.form.ph.cognome" required />
               </div>
             </div>
             <div class="form-group">
-              <label for="telefono">Telefono / WhatsApp</label>
+              <label for="telefono" data-i18n="contatti.form.telefono">Telefono / WhatsApp</label>
               <input type="tel" id="telefono" name="telefono" placeholder="+39 333 000 0000" required />
             </div>
             <div class="form-group">
-              <label for="email">Email <span class="label-opt">(facoltativa)</span></label>
+              <label for="email" data-i18n="contatti.form.email">Email <span class="label-opt">(facoltativa)</span></label>
               <input type="email" id="email" name="email" placeholder="nome@email.com" />
             </div>
             <div class="form-group">
-              <label for="percorso">Tipo di percorso</label>
+              <label for="percorso" data-i18n="contatti.form.percorso">Tipo di percorso</label>
               <select id="percorso" name="percorso" required>
-                <option value="">Seleziona il percorso</option>
-                <option value="Neofila – Inizio da zero">Neofila &ndash; Inizio da zero</option>
-                <option value="Trasformazione – Ho già esperienza">Trasformazione &ndash; Ho gi&agrave; esperienza</option>
-                <option value="Non so ancora">Non so ancora &ndash; voglio un consiglio</option>
+                <option value="" data-i18n="contatti.form.opt0">Seleziona il percorso</option>
+                <option value="Neofila – Inizio da zero" data-i18n="contatti.form.opt1">Neofila &ndash; Inizio da zero</option>
+                <option value="Trasformazione – Ho già esperienza" data-i18n="contatti.form.opt2">Trasformazione &ndash; Ho gi&agrave; esperienza</option>
+                <option value="Non so ancora" data-i18n="contatti.form.opt3">Non so ancora &ndash; voglio un consiglio</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="obiettivo">Il tuo obiettivo</label>
-              <textarea id="obiettivo" name="obiettivo" placeholder="Descrivi brevemente il tuo obiettivo…" rows="4"></textarea>
+              <label for="obiettivo" data-i18n="contatti.form.obiettivo">Il tuo obiettivo</label>
+              <textarea id="obiettivo" name="obiettivo" placeholder="Descrivi brevemente il tuo obiettivo…" data-i18n-placeholder="contatti.form.ph.obiettivo" rows="4"></textarea>
             </div>
-            <button type="submit" class="btn-form">Invia su WhatsApp &rarr;</button>
+            <button type="submit" class="btn-form" data-i18n="contatti.form.submit">Invia su WhatsApp &rarr;</button>
           </form>
         </div>
       </div>
@@ -503,26 +515,26 @@
               fill="currentColor" letter-spacing="5" opacity=".7">CINZIA ROSATO</text>
         <line x1="142" y1="48" x2="168" y2="48" stroke="currentColor" stroke-width=".6" opacity=".35"/>
       </svg>
-      <p>Personal Trainer &middot; Atleta IFBB<br>Coaching online &mdash; Lecce</p>
+      <p data-i18n="footer.brand">Personal Trainer &middot; Atleta IFBB<br>Coaching online &mdash; Lecce</p>
     </div>
-    <div class="footer-links"><h4>Link rapidi</h4><ul>
-      <li><a href="#chi-sono">Chi sono</a></li>
-      <li><a href="#risultati">Palmares</a></li>
-      <li><a href="#percorsi">Percorsi</a></li>
-      <li><a href="#metodo">Il metodo</a></li>
-      <li><a href="#contatti">Contatti</a></li>
+    <div class="footer-links"><h4 data-i18n="footer.linkrapidi">Link rapidi</h4><ul>
+      <li><a href="#chi-sono" data-i18n="nav.chiSono">Chi sono</a></li>
+      <li><a href="#risultati" data-i18n="nav.palmares">Palmares</a></li>
+      <li><a href="#percorsi" data-i18n="percorsi.tag">Percorsi</a></li>
+      <li><a href="#metodo" data-i18n="metodo.tag">Il metodo</a></li>
+      <li><a href="#contatti" data-i18n="nav.contatti">Contatti</a></li>
     </ul></div>
-    <div class="footer-links"><h4>Percorsi</h4><ul>
-      <li><a href="#percorsi">Neofila</a></li>
-      <li><a href="#percorsi">Trasformazione</a></li>
+    <div class="footer-links"><h4 data-i18n="footer.percorsiHeader">Percorsi</h4><ul>
+      <li><a href="#percorsi" data-i18n="percorsi.p1.h3">Neofila</a></li>
+      <li><a href="#percorsi" data-i18n="percorsi.p2.h3">Trasformazione</a></li>
     </ul></div>
-    <div class="footer-links"><h4>Contatti</h4><ul>
+    <div class="footer-links"><h4 data-i18n="footer.contattiHeader">Contatti</h4><ul>
       <li><a href="https://wa.me/393276956188" target="_blank" rel="noopener">WhatsApp</a></li>
       <li><a href="https://www.instagram.com/rosatocinzia/" target="_blank" rel="noopener">@rosatocinzia</a></li>
     </ul></div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 Cinzia Rosato &ndash; Personal Trainer. Tutti i diritti riservati.</span>
+    <span data-i18n="footer.copyright">&copy; 2026 Cinzia Rosato &ndash; Personal Trainer. Tutti i diritti riservati.</span>
   </div>
 </footer>
 
@@ -550,11 +562,11 @@ window.SITE_MEDIA = {
 
   /* img/mare/ — foto outdoor e lifestyle (gallery) */
   mare: [
-    { file: 'mare-1.jpg', phrase: 'DISCIPLINA'     },
-    { file: 'mare-2.jpg', phrase: 'COSTANZA'       },
-    { file: 'mare-3.jpg', phrase: 'TRASFORMAZIONE' },
-    { file: 'mare-8.jpg', phrase: 'FORZA'          },
-    { file: 'mare-9.jpg', phrase: 'CRESCITA'         }
+    { file: 'mare-1.jpg', phrase: 'DISCIPLINA',     en: 'DISCIPLINE'     },
+    { file: 'mare-2.jpg', phrase: 'COSTANZA',       en: 'CONSISTENCY'    },
+    { file: 'mare-3.jpg', phrase: 'TRASFORMAZIONE', en: 'TRANSFORMATION' },
+    { file: 'mare-8.jpg', phrase: 'FORZA',          en: 'STRENGTH'       },
+    { file: 'mare-9.jpg', phrase: 'CRESCITA',       en: 'GROWTH'         }
   ],
 
   /* img/ — video per il box chi sono (si alternano in crossfade) */
