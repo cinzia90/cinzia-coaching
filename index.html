@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinzia Rosato – Personal Trainer | Coaching Online</title>
+  <meta name="description" content="Cinzia Rosato, atleta IFBB e personal trainer di Lecce. Coaching online personalizzato. Pugliesi 2025 – 1° Posto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap" rel="stylesheet" />
+  <!-- Three.js WebGL -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <!-- Lenis smooth scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== PRELOADER / INTRO SCREEN ===== -->
+<div id="preloader">
+  <!-- Foto di scena visibile nel preloader -->
+  <div class="pre-bg-photo">
+    <img src="img/hero-stage.jpg" alt="" aria-hidden="true"/>
+  </div>
+  <div class="pre-bg-overlay"></div>
+  <div class="preloader-inner">
+    <div class="pre-logo-wrap">
+      <img class="pre-logo" src="img/logo.jpg" alt="CR Coaching"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <svg class="pre-logo-svg" style="display:none" viewBox="0 0 210 48" fill="none">
+        <circle cx="19" cy="24" r="17"  stroke="currentColor" stroke-width="1"/>
+        <circle cx="19" cy="24" r="11"  stroke="currentColor" stroke-width=".7" opacity=".55"/>
+        <circle cx="19" cy="24" r="4.5" stroke="currentColor" stroke-width=".8" opacity=".35"/>
+        <rect x="36" y="19.5" width="6" height="9" rx="1.5" fill="currentColor" opacity=".9"/>
+        <line x1="42" y1="24" x2="72" y2="24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <text x="105" y="33" text-anchor="middle" font-family="Oswald,sans-serif" font-size="20" font-weight="300" fill="currentColor" letter-spacing="10">CR</text>
+        <line x1="138" y1="24" x2="168" y2="24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="168" y="19.5" width="6" height="9" rx="1.5" fill="currentColor" opacity=".9"/>
+        <circle cx="191" cy="24" r="17"  stroke="currentColor" stroke-width="1"/>
+        <circle cx="191" cy="24" r="11"  stroke="currentColor" stroke-width=".7" opacity=".55"/>
+        <circle cx="191" cy="24" r="4.5" stroke="currentColor" stroke-width=".8" opacity=".35"/>
+      </svg>
+    </div>
+    <div class="pre-tagline">
+      <span class="pre-word">Scegliti.</span>
+      <span class="pre-word">Costruisciti.</span>
+      <span class="pre-word pre-teal">Risplendi.</span>
+    </div>
+    <div class="pre-progress"><div class="pre-bar" id="pre-bar"></div></div>
+  </div>
+  <div class="pre-curtain"></div>
+</div>
+
+<!-- GRAIN FILM OVERLAY (stile luxury brand) -->
+<div class="grain-overlay" aria-hidden="true"></div>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot"   id="cursor-dot"></div>
+<div class="cursor-ring"  id="cursor-ring"></div>
+
+<!-- NAVIGAZIONE -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo" aria-label="Cinzia Rosato">
+      <img class="logo-img" src="img/logo.jpg" alt="Cinzia Rosato Coaching"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <!-- Logo SVG fallback — replica stile logo reale CR + bilanciere -->
+      <svg class="logo-svg logo-fallback" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <!-- Bilanciere asse -->
+        <line x1="12" y1="26" x2="188" y2="26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+        <!-- Piastre sinistra -->
+        <rect x="4"  y="16" width="7" height="20" rx="2" fill="currentColor" opacity=".8"/>
+        <rect x="12" y="19" width="4" height="14" rx="1.5" fill="currentColor" opacity=".5"/>
+        <!-- Piastre destra -->
+        <rect x="189" y="16" width="7" height="20" rx="2" fill="currentColor" opacity=".8"/>
+        <rect x="184" y="19" width="4" height="14" rx="1.5" fill="currentColor" opacity=".5"/>
+        <!-- Collari manubrio -->
+        <rect x="22" y="21" width="5" height="10" rx="1" fill="currentColor" opacity=".9"/>
+        <rect x="173" y="21" width="5" height="10" rx="1" fill="currentColor" opacity=".9"/>
+        <!-- Monogramma CR serif sovrapposto -->
+        <text x="88" y="34" text-anchor="middle"
+              font-family="'Cormorant Garamond',Georgia,serif"
+              font-size="34" font-weight="600" font-style="italic"
+              fill="currentColor" letter-spacing="-2">CR</text>
+        <!-- CINZIA ROSATO -->
+        <line x1="32" y1="48" x2="58" y2="48" stroke="currentColor" stroke-width=".6" opacity=".35"/>
+        <text x="100" y="52" text-anchor="middle"
+              font-family="Oswald,sans-serif" font-size="7" font-weight="400"
+              fill="currentColor" letter-spacing="5" opacity=".7">CINZIA ROSATO</text>
+        <line x1="142" y1="48" x2="168" y2="48" stroke="currentColor" stroke-width=".6" opacity=".35"/>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#chi-sono">Chi sono</a></li>
+      <li><a href="#risultati">Palmares</a></li>
+      <li><a href="#percorsi">Percorsi</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+      <li><a href="#contatti" class="btn-nav magnetic">Inizia ora</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <ul class="nav-mobile hidden" id="nav-mobile">
+    <li><a href="#chi-sono" onclick="closeMenu()">Chi sono</a></li>
+    <li><a href="#risultati" onclick="closeMenu()">Palmares</a></li>
+    <li><a href="#percorsi" onclick="closeMenu()">Percorsi</a></li>
+    <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
+    <li><a href="#contatti" onclick="closeMenu()">Contatti</a></li>
+    <li><a href="#contatti" class="btn-nav" onclick="closeMenu()">Inizia ora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <canvas id="webgl-hero"></canvas>
+  <canvas id="particles"></canvas>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        IFBB &nbsp;·&nbsp; Pugliesi 2025 &nbsp;·&nbsp; 1° Posto
+      </div>
+      <span class="hero-tag">Personal Trainer &middot; Coaching Online &middot; Tutta Italia</span>
+      <h1 class="hero-title" data-skew>
+        <span class="reveal-line"><span class="reveal-word">Scegliti.</span></span>
+        <span class="reveal-line"><span class="reveal-word">Costruisciti.</span></span>
+        <span class="reveal-line"><span class="reveal-word teal-word">Risplendi.</span></span>
+      </h1>
+      <p class="hero-sub">
+        Non basta allenarsi &mdash; serve un metodo. Percorsi forgiati
+        dall&rsquo;esperienza agonistica, costruiti su di te, per risultati autentici.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contatti" class="btn-primary magnetic">Inizia il tuo percorso</a>
+        <a href="#percorsi" class="btn-outline">Scopri i percorsi</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo-wrap reveal-clip">
+        <img src="img/hero-stage.jpg" alt="Cinzia Rosato Personal Trainer" class="hero-img-main" />
+        <div class="hero-photo-glow"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- CHI SONO -->
+<section id="chi-sono">
+  <div class="container">
+    <div class="chisono-inner">
+      <div class="chisono-media">
+        <div class="chisono-photo-wrap reveal-clip">
+          <img src="img/photo-6.jpg" alt="Cinzia Rosato in palestra"/>
+          <div class="chisono-photo-glow"></div>
+        </div>
+      </div>
+      <div class="chisono-text">
+        <span class="section-tag">Chi sono</span>
+        <h2 class="section-title">Sono <em>Cinzia Rosato</em></h2>
+        <p>Da sempre appassionata di sport, ho trasformato la mia passione in una missione. Ho gareggiato nella categoria Bikini Fitness, raggiungendo il podio in competizioni nazionali &mdash; e quella disciplina agonistica &egrave; oggi il cuore del mio metodo.</p>
+        <p>Sono Personal Trainer certificata con attestati professionali per operare nelle strutture sportive, formata attraverso percorsi avanzati di metodologia dell&rsquo;allenamento e preparazione atletica.</p>
+        <p>Con il coaching online seguo persone in tutta Italia che vogliono trasformare davvero il proprio corpo &mdash; non con schede generiche, ma con un piano costruito su di te.</p>
+        <ul class="qualifiche">
+          <li>Atleta IFBB &ndash; Bikini Fitness, pluripodio nazionale</li>
+          <li>Personal Trainer certificata con attestati per strutture sportive</li>
+          <li>Formazione avanzata in metodologie di allenamento e nutrizione</li>
+          <li>Coaching online personalizzato per tutti i livelli</li>
+          <li>Supporto diretto, continuo e motivazionale</li>
+        </ul>
+        <a href="#contatti" class="cta-btn magnetic">Contattami su WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO REEL — carousel spotlight -->
+<section id="video-reel" class="section-video-reel">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">In allenamento</span>
+      <h2 class="section-title">Il lavoro dietro <em>ai risultati</em></h2>
+      <p>Ogni sessione, ogni rep, ogni sacrificio &mdash; questo &egrave; il quotidiano che fa la differenza.</p>
+    </div>
+  </div>
+  <div class="vc-wrap" id="vc-wrap">
+    <div class="vc-track" id="vc-track">
+      <div class="vc-slide active">
+        <video muted loop playsinline><source src="img/video-new-1.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="vc-slide">
+        <video muted loop playsinline><source src="img/video-new-2.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="vc-slide">
+        <video muted loop playsinline><source src="img/video-new-3.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="vc-slide">
+        <video muted loop playsinline><source src="img/video-new-4.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="vc-slide">
+        <video muted loop playsinline><source src="img/video-new-5.mp4" type="video/mp4"/></video>
+      </div>
+      <div class="vc-slide">
+        <video muted loop playsinline><source src="img/video-new-6.mp4" type="video/mp4"/></video>
+      </div>
+    </div>
+    <button class="vc-btn vc-prev" id="vc-prev" aria-label="Precedente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15,18 9,12 15,6"/></svg>
+    </button>
+    <button class="vc-btn vc-next" id="vc-next" aria-label="Successivo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9,6 15,12 9,18"/></svg>
+    </button>
+    <div class="vc-dots" id="vc-dots">
+      <span class="vc-dot active"></span><span class="vc-dot"></span><span class="vc-dot"></span>
+      <span class="vc-dot"></span><span class="vc-dot"></span><span class="vc-dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENZIALI AGONISTICHE (ex palmares) -->
+<section id="risultati">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Esperienza agonistica</span>
+      <h2 class="section-title">Forgiata <em>sul palco</em></h2>
+      <p>Due podi nazionali. Non per vantarmi &mdash; quella disciplina &egrave; oggi il cuore del mio metodo di coaching.</p>
+    </div>
+    <div class="cred-wrap">
+      <div class="cred-photo">
+        <img src="img/photo-8.jpg" alt="IFBB Pugliesi 2025 &middot; 1&deg; Posto" class="reveal-clip" loading="lazy"/>
+        <div class="cred-photo-overlay">
+          <span class="cred-photo-badge badge-gold">1° POSTO</span>
+          <div class="cred-photo-info">
+            <strong>IFBB Pugliesi 2025</strong>
+            <span>Bikini Fitness &middot; FIT ITALY</span>
+          </div>
+        </div>
+      </div>
+      <div class="cred-info">
+        <p class="cred-lead">Ho scelto di gareggiare non per costruirmi una vetrina &mdash; ma per capire cosa significa davvero portare un corpo al massimo. L&rsquo;allenamento preciso, la preparazione studiata, la testa che non si arrende. &Egrave; quello che trasferisco ogni giorno ai miei clienti.</p>
+        <div class="award-list">
+          <div class="award-item">
+            <div class="award-dot gold-dot"></div>
+            <div class="award-details">
+              <h4>IFBB Pugliesi 2025</h4>
+              <p>Bikini Fitness &middot; 1&ordf; Classe &middot; FIT ITALY</p>
+            </div>
+            <span class="award-pos award-gold">1° POSTO</span>
+          </div>
+          <div class="award-item">
+            <div class="award-dot silver-dot"></div>
+            <div class="award-details">
+              <h4>Panatta Rimini Contest</h4>
+              <p>Bikini Fitness &middot; 2&ordf; Classe &middot; FIT ITALY</p>
+            </div>
+            <span class="award-pos award-silver">2° POSTO</span>
+          </div>
+        </div>
+        <a href="#contatti" class="cta-btn magnetic">Porta quel metodo nel tuo percorso &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERCORSI -->
+<section id="percorsi">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Percorsi</span>
+      <h2 class="section-title">Scegli il tuo <em>percorso</em></h2>
+      <p>Due cammini pensati per livelli diversi. Stesso metodo, stesso impegno, risultati reali.</p>
+    </div>
+    <div class="percorsi-grid">
+      <div class="percorso-card tilt-card">
+        <div class="percorso-num">01</div>
+        <h3>Neofila</h3>
+        <p class="percorso-label">Per chi inizia da zero</p>
+        <p class="percorso-desc">Non sai da dove partire? Ti accompagno passo dopo passo, con un percorso graduale e sicuro pensato per la tua situazione attuale.</p>
+        <ul class="percorso-list">
+          <li>Colloquio iniziale gratuito e senza impegno</li>
+          <li>Scheda di allenamento su misura per principianti</li>
+          <li>Linee guida alimentari semplici e pratiche</li>
+          <li>Spiegazione degli esercizi e della tecnica corretta</li>
+          <li>Check periodici e progressione guidata</li>
+          <li>Supporto e motivazione costante</li>
+        </ul>
+        <a href="#contatti" class="btn-primary magnetic">Prenota il consulto gratuito</a>
+      </div>
+      <div class="percorso-card featured tilt-card">
+        <div class="percorso-num">02</div>
+        <h3>Trasformazione</h3>
+        <p class="percorso-label-dark">Per chi si allena e vuole risultati seri</p>
+        <p class="percorso-desc">Hai gi&agrave; esperienza ma ti manca struttura e progressione vera. &Egrave; il momento di fare il salto di qualit&agrave;.</p>
+        <ul class="percorso-list">
+          <li>Analisi della scheda attuale e dei punti deboli</li>
+          <li>Programma periodizzato e progressivo su misura</li>
+          <li>Piano alimentare adatto al tuo obiettivo</li>
+          <li>Ottimizzazione del recupero e del carico</li>
+          <li>Check periodici intensivi sui progressi</li>
+          <li>Supporto diretto durante tutto il percorso</li>
+        </ul>
+        <a href="#contatti" class="btn-primary-dark magnetic">Prenota il consulto gratuito</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODO -->
+<section id="metodo">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Come funziona</span>
+      <h2 class="section-title">Il mio <em>metodo</em></h2>
+      <p>Un percorso strutturato in 4 fasi. Nulla &egrave; lasciato al caso.</p>
+    </div>
+    <div class="metodo-grid">
+      <div class="metodo-step">
+        <div class="step-number">01</div>
+        <h3>Colloquio iniziale</h3>
+        <p>Valutiamo insieme il tuo punto di partenza, i tuoi obiettivi e la tua storia. Gratuito, senza impegno, senza giudizi.</p>
+      </div>
+      <div class="metodo-step">
+        <div class="step-number">02</div>
+        <h3>Piano su misura</h3>
+        <p>Scheda di allenamento e linee guida alimentari costruite su di te. Non schede standard: il tuo piano, per il tuo corpo.</p>
+      </div>
+      <div class="metodo-step">
+        <div class="step-number">03</div>
+        <h3>Check periodici</h3>
+        <p>Il percorso viene monitorato. Valutiamo i progressi, analizziamo i risultati e aggiustiamo il tiro quando serve.</p>
+      </div>
+      <div class="metodo-step">
+        <div class="step-number">04</div>
+        <h3>Supporto costante</h3>
+        <p>Non sei mai sola. Supporto diretto per dubbi, correzioni e motivazione. Il coaching &egrave; presenza, non solo una scheda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — VORTICE 3D (CSS sticky + scroll-driven rotation) -->
+<div class="gallery-scroll-space" id="gallery">
+<section class="gallery-sticky-wrap">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Gallery</span>
+      <h2 class="section-title">Forma. <em>Disciplina. Luce.</em></h2>
+      <p class="gallery-hint">Scorri per esplorare</p>
+    </div>
+  </div>
+  <div class="vortex-stage">
+    <div class="vortex-ring" id="vortex-ring">
+      <div class="vortex-item" data-phrase="DISCIPLINA">
+        <img src="img/hero-bg.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">DISCIPLINA</div>
+      </div>
+      <div class="vortex-item" data-phrase="COSTANZA">
+        <img src="img/gallery-1.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">COSTANZA</div>
+      </div>
+      <div class="vortex-item" data-phrase="TRASFORMAZIONE">
+        <img src="img/gallery-2.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">TRASFORMAZIONE</div>
+      </div>
+      <div class="vortex-item" data-phrase="FORZA">
+        <img src="img/hero-cover.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">FORZA</div>
+      </div>
+      <div class="vortex-item" data-phrase="METODO">
+        <img src="img/gallery-3.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">METODO</div>
+      </div>
+      <div class="vortex-item" data-phrase="ECCELLENZA">
+        <img src="img/gallery-4.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">ECCELLENZA</div>
+      </div>
+      <div class="vortex-item" data-phrase="RISPLENDI">
+        <img src="img/gallery-5.jpg" alt="Cinzia Rosato" loading="lazy"/>
+        <div class="vortex-phrase">RISPLENDI</div>
+      </div>
+    </div>
+    <!-- Etichetta frase attiva -->
+    <div class="vortex-label" id="vortex-label">DISCIPLINA</div>
+  </div>
+</section>
+</div><!-- /gallery-scroll-space -->
+
+<!-- CONTATTI -->
+<section id="contatti">
+  <div class="container">
+    <div class="contatti-inner">
+      <div class="contatti-info">
+        <span class="section-tag">Contatti</span>
+        <h2 class="section-title">Inizia il tuo <em>cambiamento</em></h2>
+        <p>Compila il modulo: ti contatto io direttamente via WhatsApp per valutare insieme da dove partire. Il consulto &egrave; gratuito e senza impegno.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div><h4>WhatsApp</h4><a href="https://wa.me/393276956188">Scrivimi direttamente</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </div>
+            <div><h4>Instagram</h4><a href="https://www.instagram.com/rosatocinzia/" target="_blank" rel="noopener">@rosatocinzia</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div><h4>Dove</h4><p>Lecce &mdash; Coaching online in tutta Italia</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="contact-form-box">
+          <h3>Prenota il consulto gratuito</h3>
+          <form id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required />
+              </div>
+              <div class="form-group">
+                <label for="cognome">Cognome</label>
+                <input type="text" id="cognome" name="cognome" placeholder="Il tuo cognome" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="telefono">Telefono / WhatsApp</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+39 333 000 0000" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="label-opt">(facoltativa)</span></label>
+              <input type="email" id="email" name="email" placeholder="nome@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="percorso">Tipo di percorso</label>
+              <select id="percorso" name="percorso" required>
+                <option value="">Seleziona il percorso</option>
+                <option value="Neofila – Inizio da zero">Neofila &ndash; Inizio da zero</option>
+                <option value="Trasformazione – Ho già esperienza">Trasformazione &ndash; Ho gi&agrave; esperienza</option>
+                <option value="Non so ancora">Non so ancora &ndash; voglio un consiglio</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="obiettivo">Il tuo obiettivo</label>
+              <textarea id="obiettivo" name="obiettivo" placeholder="Descrivi brevemente il tuo obiettivo…" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-form">Invia su WhatsApp &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg class="footer-logo-svg" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="12" y1="26" x2="188" y2="26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/>
+        <rect x="4"  y="16" width="7" height="20" rx="2" fill="currentColor" opacity=".8"/>
+        <rect x="12" y="19" width="4" height="14" rx="1.5" fill="currentColor" opacity=".5"/>
+        <rect x="189" y="16" width="7" height="20" rx="2" fill="currentColor" opacity=".8"/>
+        <rect x="184" y="19" width="4" height="14" rx="1.5" fill="currentColor" opacity=".5"/>
+        <rect x="22" y="21" width="5" height="10" rx="1" fill="currentColor" opacity=".9"/>
+        <rect x="173" y="21" width="5" height="10" rx="1" fill="currentColor" opacity=".9"/>
+        <text x="88" y="34" text-anchor="middle"
+              font-family="'Cormorant Garamond',Georgia,serif"
+              font-size="34" font-weight="600" font-style="italic"
+              fill="currentColor" letter-spacing="-2">CR</text>
+        <line x1="32" y1="48" x2="58" y2="48" stroke="currentColor" stroke-width=".6" opacity=".35"/>
+        <text x="100" y="52" text-anchor="middle"
+              font-family="Oswald,sans-serif" font-size="7" font-weight="400"
+              fill="currentColor" letter-spacing="5" opacity=".7">CINZIA ROSATO</text>
+        <line x1="142" y1="48" x2="168" y2="48" stroke="currentColor" stroke-width=".6" opacity=".35"/>
+      </svg>
+      <p>Personal Trainer &middot; Atleta IFBB<br>Coaching online &mdash; Lecce</p>
+    </div>
+    <div class="footer-links"><h4>Link rapidi</h4><ul>
+      <li><a href="#chi-sono">Chi sono</a></li>
+      <li><a href="#risultati">Palmares</a></li>
+      <li><a href="#percorsi">Percorsi</a></li>
+      <li><a href="#metodo">Il metodo</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul></div>
+    <div class="footer-links"><h4>Percorsi</h4><ul>
+      <li><a href="#percorsi">Neofila</a></li>
+      <li><a href="#percorsi">Trasformazione</a></li>
+    </ul></div>
+    <div class="footer-links"><h4>Contatti</h4><ul>
+      <li><a href="https://wa.me/393276956188" target="_blank" rel="noopener">WhatsApp</a></li>
+      <li><a href="https://www.instagram.com/rosatocinzia/" target="_blank" rel="noopener">@rosatocinzia</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Cinzia Rosato &ndash; Personal Trainer. Tutti i diritti riservati.</span>
+  </div>
+</footer>
+
+<a href="https://wa.me/393276956188" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>
