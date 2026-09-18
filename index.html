@@ -158,19 +158,8 @@
   <div class="container">
     <div class="chisono-inner">
       <div class="chisono-media">
-        <!-- Carousel: video e frasi alternati (v1 → frase → v2 → frase → ...) -->
-        <div class="vc-wrap vc-chisono" id="vc-wrap">
-          <div class="vc-track" id="vc-track">
-            <!-- Costruito da JS via window.SITE_MEDIA.chiSono -->
-          </div>
-          <button class="vc-btn vc-prev" id="vc-prev" aria-label="Precedente">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15,18 9,12 15,6"/></svg>
-          </button>
-          <button class="vc-btn vc-next" id="vc-next" aria-label="Successivo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9,6 15,12 9,18"/></svg>
-          </button>
-          <div class="vc-dots" id="vc-dots"><!-- costruito da JS --></div>
-        </div>
+        <!-- Video crossfade: i video si alternano ogni 4s — costruito da JS via window.SITE_MEDIA.chiSono -->
+        <div class="chisono-video-box" id="chisono-video-box"></div>
       </div>
       <div class="chisono-text">
         <span class="section-tag">Chi sono</span>

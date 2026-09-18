@@ -366,7 +366,26 @@ nav {
 #chi-sono { background: rgba(5,13,17,.86); }
 .chisono-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 68px; align-items: center; }
 
-/* Foto portrait chi sono */
+/* Box crossfade video portrait — sostituisce carousel */
+.chisono-video-box {
+  position: relative;
+  border-radius: 20px; overflow: hidden;
+  aspect-ratio: 9 / 16;
+  max-height: 600px;
+  background: var(--bg-3);
+  border: 1px solid rgba(15,184,176,.12);
+  box-shadow: 0 0 60px rgba(15,184,176,.06), 0 40px 80px rgba(0,0,0,.4);
+}
+.chisono-video-item {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.chisono-video-item.active { opacity: 1; }
+
+/* Foto portrait chi sono (legacy) */
 .chisono-photo-wrap {
   position: relative;
   width: 100%;
@@ -1015,7 +1034,8 @@ footer {
   .hero-photo-wrap { order: -1; height: clamp(300px, 60vw, 420px); }
   .hero-title { font-size: 3rem; }
   .chisono-inner { grid-template-columns: 1fr; gap: 32px; }
-  .chisono-video-wrap { max-height: 55vw; }
+  /* Box video portrait su mobile: aspect-ratio 3/4 = ritratto senza essere troppo lungo */
+  .chisono-video-box { aspect-ratio: 3 / 4; max-height: 80vw; }
   .cs-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
   .comp-cinematic { grid-template-columns: 1fr; min-height: auto; }
   .comp-scene { min-height: 380px; }

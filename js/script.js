@@ -12,30 +12,28 @@
   var M = window.SITE_MEDIA;
   if (!M) return;
 
-  /* CHI SONO: video alternato a frase */
+  /* CHI SONO: crossfade automatico video portrait */
   if (M.chiSono) {
-    var t = document.getElementById('vc-track');
-    var d = document.getElementById('vc-dots');
-    if (t) {
-      t.innerHTML = '';
+    var csBox = document.getElementById('chisono-video-box');
+    if (csBox) {
+      csBox.innerHTML = '';
       M.chiSono.forEach(function(item, i) {
-        var vs = document.createElement('div');
-        vs.className = 'vc-slide' + (i === 0 ? ' active' : '');
-        vs.innerHTML = '<video muted loop playsinline><source src="img/' + item.file + '" type="video/mp4"/></video>';
-        t.appendChild(vs);
-        var ts = document.createElement('div');
-        ts.className = 'vc-slide vc-text-slide';
-        ts.innerHTML = '<div class="vct-line"></div><span class="vct-word">' + item.frase + '</span><p class="vct-desc">' + item.desc + '</p><div class="vct-line"></div>';
-        t.appendChild(ts);
+        var el = document.createElement('video');
+        el.muted = true; el.loop = true; el.playsInline = true;
+        el.src = 'img/' + item.file;
+        el.className = 'chisono-video-item' + (i === 0 ? ' active' : '');
+        csBox.appendChild(el);
       });
-    }
-    if (d) {
-      d.innerHTML = '';
-      for (var di = 0; di < M.chiSono.length * 2; di++) {
-        var dot = document.createElement('span');
-        dot.className = 'vc-dot' + (di === 0 ? ' active' : '');
-        d.appendChild(dot);
-      }
+      var csItems = Array.from(csBox.querySelectorAll('.chisono-video-item'));
+      var csCurrent = 0;
+      if (csItems[0]) csItems[0].play().catch(function(){});
+      setInterval(function() {
+        csItems[csCurrent].classList.remove('active');
+        csItems[csCurrent].pause();
+        csCurrent = (csCurrent + 1) % csItems.length;
+        csItems[csCurrent].classList.add('active');
+        csItems[csCurrent].play().catch(function(){});
+      }, 4000);
     }
   }
 
@@ -708,8 +706,7 @@ function initSpotlightCarousel(wrapId, trackId, prevId, nextId, dotsId, autoDela
   window.addEventListener('resize', function() { goTo(current, true); }, { passive: true });
 }
 
-/* Init chi sono — scorrimento automatico continuo */
-initSpotlightCarousel('vc-wrap', 'vc-track', 'vc-prev', 'vc-next', 'vc-dots', 3200);
+/* Carousel chi-sono rimosso — ora usa crossfade (vedi Media Builder IIFE) */
 
 /* hero usa img statica, nessun video fallback necessario */
 
