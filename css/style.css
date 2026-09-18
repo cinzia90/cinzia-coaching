@@ -258,6 +258,9 @@ nav {
 }
 .reveal-line { display: block; overflow: hidden; line-height: 1.12; }
 .reveal-word  { display: block; }
+/* "Diventa / la tua / forza." — 1 riga su desktop, 3 righe su mobile */
+.reveal-dtf { display: flex !important; align-items: baseline; gap: 0.28em; flex-wrap: nowrap; overflow: visible; }
+@media (max-width: 768px) { .reveal-dtf { flex-direction: column; gap: 0.05em; } }
 .teal-word    { color: var(--teal); }
 /* chars — animati via GSAP */
 .char {
