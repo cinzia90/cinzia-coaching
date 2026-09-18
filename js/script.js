@@ -4,6 +4,84 @@
    Custom Cursor | Magnetic | Particles | GSAP | Tilt | Form
    ============================================================ */
 
+/* ----------------------------------------------------------------
+   MEDIA BUILDER — popola i caroselli da window.SITE_MEDIA
+   Eseguito subito: il DOM esiste perché lo script è in fondo al body
+   ---------------------------------------------------------------- */
+(function() {
+  var M = window.SITE_MEDIA;
+  if (!M) return;
+
+  /* CHI SONO: video alternato a frase */
+  if (M.chiSono) {
+    var t = document.getElementById('vc-track');
+    var d = document.getElementById('vc-dots');
+    if (t) {
+      t.innerHTML = '';
+      M.chiSono.forEach(function(item, i) {
+        var vs = document.createElement('div');
+        vs.className = 'vc-slide' + (i === 0 ? ' active' : '');
+        vs.innerHTML = '<video muted loop playsinline><source src="img/' + item.file + '" type="video/mp4"/></video>';
+        t.appendChild(vs);
+        var ts = document.createElement('div');
+        ts.className = 'vc-slide vc-text-slide';
+        ts.innerHTML = '<div class="vct-line"></div><span class="vct-word">' + item.frase + '</span><p class="vct-desc">' + item.desc + '</p><div class="vct-line"></div>';
+        t.appendChild(ts);
+      });
+    }
+    if (d) {
+      d.innerHTML = '';
+      for (var di = 0; di < M.chiSono.length * 2; di++) {
+        var dot = document.createElement('span');
+        dot.className = 'vc-dot' + (di === 0 ? ' active' : '');
+        d.appendChild(dot);
+      }
+    }
+  }
+
+  /* GARE: foto e video dalla cartella img/gare/ */
+  if (M.gare) {
+    var gt = document.getElementById('vc-gare-track');
+    var gd = document.getElementById('vc-gare-dots');
+    if (gt) {
+      gt.innerHTML = '';
+      M.gare.forEach(function(item, i) {
+        var s = document.createElement('div');
+        s.className = 'vc-slide' + (i === 0 ? ' active' : '');
+        s.innerHTML = item.type === 'video'
+          ? '<video muted loop playsinline><source src="img/gare/' + item.file + '" type="video/mp4"/></video>'
+          : '<img src="img/gare/' + item.file + '" alt="Cinzia Rosato in gara" loading="lazy"/>';
+        gt.appendChild(s);
+      });
+    }
+    if (gd) {
+      gd.innerHTML = '';
+      M.gare.forEach(function(_, i) {
+        var dot = document.createElement('span');
+        dot.className = 'vc-dot' + (i === 0 ? ' active' : '');
+        gd.appendChild(dot);
+      });
+    }
+  }
+
+  /* GALLERY MARE: vortex items dalla cartella img/mare/ */
+  if (M.mare) {
+    var ring = document.getElementById('vortex-ring');
+    if (ring) {
+      ring.innerHTML = '';
+      M.mare.forEach(function(item) {
+        var div = document.createElement('div');
+        div.className = 'vortex-item';
+        div.dataset.phrase = item.phrase;
+        div.innerHTML = '<img src="img/mare/' + item.file + '" alt="Cinzia Rosato" loading="lazy"/><div class="vortex-phrase">' + item.phrase + '</div>';
+        ring.appendChild(div);
+      });
+      var lbl = document.getElementById('vortex-label');
+      if (lbl && M.mare[0]) lbl.textContent = M.mare[0].phrase;
+    }
+  }
+})();
+
 /* ----- PRELOADER INTRO (logo + tagline → curtain sweep → sito) ----- */
 (function() {
   var pre  = document.getElementById('preloader');
@@ -545,20 +623,20 @@ if (marqueeTrack && marqueeEl) {
   });
 }
 
-/* ----- VIDEO CAROUSEL SPOTLIGHT (vc-wrap) ----- */
-(function() {
-  var wrap    = document.getElementById('vc-wrap');
-  var track   = document.getElementById('vc-track');
-  var prevBtn = document.getElementById('vc-prev');
-  var nextBtn = document.getElementById('vc-next');
-  var dotsWrap = document.getElementById('vc-dots');
+/* ----- SPOTLIGHT CAROUSEL — funzione riusabile ----- */
+function initSpotlightCarousel(wrapId, trackId, prevId, nextId, dotsId, autoDelay) {
+  var wrap     = document.getElementById(wrapId);
+  var track    = document.getElementById(trackId);
+  var prevBtn  = document.getElementById(prevId);
+  var nextBtn  = document.getElementById(nextId);
+  var dotsWrap = document.getElementById(dotsId);
   if (!track) return;
 
   var slides  = Array.from(track.querySelectorAll('.vc-slide'));
-  var dots    = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.vc-dot')) : [];
   var N       = slides.length;
   var current = 0;
   var autoTimer;
+  if (!N) return;
 
   function slideW() { return slides[0] ? (slides[0].offsetWidth + 16) : 236; }
 
@@ -566,6 +644,8 @@ if (marqueeTrack && marqueeEl) {
     var wW = wrap ? wrap.offsetWidth : window.innerWidth;
     return -(idx * slideW()) + (wW / 2) - (slideW() / 2) + 8;
   }
+
+  function getDots() { return dotsWrap ? Array.from(dotsWrap.querySelectorAll('.vc-dot')) : []; }
 
   function goTo(idx, noAuto) {
     idx = ((idx % N) + N) % N;
@@ -576,23 +656,36 @@ if (marqueeTrack && marqueeEl) {
       var v = s.querySelector('video');
       if (v) { if (i === idx) v.play().catch(function(){}); else v.pause(); }
     });
-    dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    getDots().forEach(function(d, i) { d.classList.toggle('active', i === idx); });
     if (!noAuto) resetAuto();
   }
 
   function resetAuto() {
     clearInterval(autoTimer);
-    autoTimer = setInterval(function() { goTo(current + 1, true); }, 4800);
+    autoTimer = setInterval(function() { goTo(current + 1, true); }, autoDelay || 4800);
   }
 
-  goTo(0, true);
-  resetAuto();
+  /* Double RAF: layout già calcolato prima di posizionare */
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      goTo(0, true);
+      resetAuto();
+    });
+  });
 
   if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); });
   if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); });
-  dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
 
-  /* touch swipe */
+  if (dotsWrap) {
+    dotsWrap.addEventListener('click', function(e) {
+      var el = e.target;
+      while (el && !el.classList.contains('vc-dot')) el = el.parentElement;
+      if (!el) return;
+      var idx = getDots().indexOf(el);
+      if (idx >= 0) goTo(idx);
+    });
+  }
+
   var tsX = 0;
   track.addEventListener('touchstart', function(e) { tsX = e.touches[0].clientX; }, { passive: true });
   track.addEventListener('touchend',   function(e) {
@@ -600,15 +693,17 @@ if (marqueeTrack && marqueeEl) {
     if (Math.abs(dx) > 44) goTo(dx < 0 ? current + 1 : current - 1);
   }, { passive: true });
 
-  /* pause auto on hover */
   if (wrap) {
     wrap.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
     wrap.addEventListener('mouseleave', resetAuto);
   }
 
-  /* recalculate on resize */
   window.addEventListener('resize', function() { goTo(current, true); }, { passive: true });
-})();
+}
+
+/* Init: chi sono + gare */
+initSpotlightCarousel('vc-wrap',      'vc-track',      'vc-prev',      'vc-next',      'vc-dots',      4800);
+initSpotlightCarousel('vc-gare-wrap', 'vc-gare-track', 'vc-gare-prev', 'vc-gare-next', 'vc-gare-dots', 5000);
 
 /* hero usa img statica, nessun video fallback necessario */
 
