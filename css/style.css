@@ -48,7 +48,7 @@ body {
 }
 .pre-logo-wrap { opacity: 0; transform: scale(.88); }
 .pre-logo {
-  height: 90px; width: auto; display: block;
+  height: 200px; width: auto; max-width: 90vw; display: block;
   mix-blend-mode: screen;
   filter: brightness(1.12) saturate(1.05);
 }
@@ -403,6 +403,46 @@ nav {
   display: flex; align-items: center; justify-content: center;
   font-size: .7rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;
   border: 1px solid rgba(15,184,176,.25);
+}
+
+/* ===== CHI SONO — CARDS ===== */
+.chisono-intro { color: var(--muted); font-size: .97rem; line-height: 1.75; margin-bottom: 24px; }
+.cs-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.cs-card {
+  background: rgba(15,184,176,.04);
+  border: 1px solid rgba(15,184,176,.14);
+  border-radius: 10px;
+  padding: 12px 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: border-color .25s, background .25s;
+}
+.cs-card:hover { background: rgba(15,184,176,.08); border-color: rgba(15,184,176,.28); }
+.cs-card-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0; margin-top: 5px;
+  box-shadow: 0 0 6px rgba(15,184,176,.5);
+}
+.cs-card-text strong {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: .78rem; font-weight: 600;
+  color: var(--teal);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.cs-card-text span {
+  font-size: .73rem;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 /* ===== VIDEO REEL CAROUSEL ===== */
@@ -910,6 +950,12 @@ footer {
   justify-content: space-between; align-items: flex-start;
   gap: 40px; margin-bottom: 40px;
 }
+.footer-logo-img {
+  height: 80px; width: auto; max-width: 200px; display: block;
+  mix-blend-mode: screen;
+  filter: brightness(1.1) saturate(1.05);
+  margin-bottom: 14px;
+}
 .footer-logo-svg { height: 52px; width: auto; color: var(--teal); margin-bottom: 14px; opacity: .65; }
 .footer-brand p { max-width: 220px; line-height: 1.65; }
 .footer-links h4 {
@@ -955,8 +1001,8 @@ footer {
   .vc-slide { flex: 0 0 180px; height: 320px; }
   .vc-prev { left: 8px; }
   .vc-next { right: 8px; }
-  /* Gallery vortex — meno spazio di scroll su mobile */
-  .gallery-scroll-space { height: 240vh; }
+  /* Gallery vortex mobile */
+  .vortex-stage { height: 60vw; min-height: 340px; }
   /* Chi sono photo mobile */
   .chisono-photo-wrap { height: clamp(320px, 65vw, 440px); }
 
@@ -985,8 +1031,9 @@ footer {
   .hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 80px 24px 60px; }
   .hero-photo-wrap { order: -1; height: clamp(300px, 60vw, 420px); }
   .hero-title { font-size: 3rem; }
-  .chisono-inner { grid-template-columns: 1fr; gap: 40px; }
+  .chisono-inner { grid-template-columns: 1fr; gap: 32px; }
   .chisono-video-wrap { max-height: 55vw; }
+  .cs-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
   .comp-cinematic { grid-template-columns: 1fr; min-height: auto; }
   .comp-scene { min-height: 380px; }
   .comp-scene-divider { width: 100%; height: 2px; }
@@ -1001,8 +1048,11 @@ footer {
   section { padding: 60px 20px; }
 }
 @media (max-width: 480px) {
-  .reel-item { width: 140px; height: 249px; }
-  .gallery-scroll-space { height: 200vh; }
+  .cs-cards { grid-template-columns: 1fr 1fr; gap: 7px; }
+  .cs-card { padding: 10px 11px; }
+  .cs-card-text strong { font-size: .72rem; }
+  .cs-card-text span { font-size: .68rem; }
+  .vortex-stage { height: 72vw; min-height: 280px; }
 }
 @media (max-width: 480px) {
   .metodo-grid { grid-template-columns: 1fr; }
