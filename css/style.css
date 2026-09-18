@@ -19,7 +19,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 /* scroll-behavior: smooth rimosso — Lenis gestisce il smooth scroll, il doppio conflitto blocca il trackpad PC */
-html { scroll-behavior: auto; }
+html { scroll-behavior: auto; overflow-x: hidden; max-width: 100%; }
 
 body {
   font-family: 'Inter', sans-serif;
