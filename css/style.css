@@ -537,44 +537,30 @@ nav {
 
 .cred-wrap {
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: 380px 1fr;
   gap: 60px;
   align-items: start;
   margin-top: 48px;
 }
-.cred-photo {
-  position: relative; border-radius: 16px; overflow: hidden;
-  height: 500px;
+
+/* Gare: box crossfade — foto/video si alternano in dissolvenza */
+.cred-media {
+  position: relative;
+  border-radius: 16px; overflow: hidden;
+  height: 520px;
+  background: var(--bg-3);
   box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(15,184,176,.1);
 }
-.cred-photo img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center top; display: block;
-  transition: transform 1.2s cubic-bezier(.25,.46,.45,.94);
-}
-.cred-photo:hover img { transform: scale(1.04); }
-.cred-photo-overlay {
+.cred-media-item {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(5,13,17,.9) 0%, transparent 55%);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 22px; gap: 8px;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  opacity: 0;
+  transition: opacity 1.2s ease;
 }
-.cred-photo-badge {
-  display: inline-block; width: fit-content;
-  font-family: 'Oswald', sans-serif; font-size: .68rem; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase;
-  padding: 5px 13px; border-radius: 3px;
-}
-.badge-gold { background: rgba(212,166,64,.14); color: var(--gold); border: 1px solid rgba(212,166,64,.32); }
-.cred-photo-info { display: flex; flex-direction: column; gap: 2px; }
-.cred-photo-info strong { font-family: 'Oswald', sans-serif; font-size: 1rem; color: var(--white); font-weight: 500; letter-spacing: .04em; }
-.cred-photo-info span { font-size: .78rem; color: var(--muted); }
+.cred-media-item.active { opacity: 1; }
 
 .cred-lead { color: var(--muted); font-size: .97rem; line-height: 1.82; margin-bottom: 30px; }
-
-/* Gare carousel — info centrata sotto il carousel */
-.cred-info-center { max-width: 720px; margin: 40px auto 0; }
-.vc-gare { padding: 16px 0 48px; }
 
 .award-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
 .award-item {
@@ -993,7 +979,7 @@ footer {
 @media (max-width: 768px) {
   /* Credenziali mobile */
   .cred-wrap { grid-template-columns: 1fr; gap: 36px; }
-  .cred-photo { height: 72vw; max-height: 420px; }
+  .cred-media { height: 72vw; max-height: 420px; }
   /* Video carousel mobile */
   .vc-slide { flex: 0 0 180px; height: 320px; }
   .vc-prev { left: 8px; }

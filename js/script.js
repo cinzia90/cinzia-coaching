@@ -39,28 +39,36 @@
     }
   }
 
-  /* GARE: foto e video dalla cartella img/gare/ */
+  /* GARE: crossfade automatico — foto/video nella stessa area */
   if (M.gare) {
-    var gt = document.getElementById('vc-gare-track');
-    var gd = document.getElementById('vc-gare-dots');
-    if (gt) {
-      gt.innerHTML = '';
+    var cm = document.getElementById('cred-media');
+    if (cm) {
+      cm.innerHTML = '';
       M.gare.forEach(function(item, i) {
-        var s = document.createElement('div');
-        s.className = 'vc-slide' + (i === 0 ? ' active' : '');
-        s.innerHTML = item.type === 'video'
-          ? '<video muted loop playsinline><source src="img/gare/' + item.file + '" type="video/mp4"/></video>'
-          : '<img src="img/gare/' + item.file + '" alt="Cinzia Rosato in gara" loading="lazy"/>';
-        gt.appendChild(s);
+        var el;
+        if (item.type === 'video') {
+          el = document.createElement('video');
+          el.muted = true; el.loop = true; el.playsInline = true;
+          el.src = 'img/gare/' + item.file;
+        } else {
+          el = document.createElement('img');
+          el.src = 'img/gare/' + item.file;
+          el.alt = 'Cinzia Rosato in gara';
+          el.loading = 'lazy';
+        }
+        el.className = 'cred-media-item' + (i === 0 ? ' active' : '');
+        cm.appendChild(el);
       });
-    }
-    if (gd) {
-      gd.innerHTML = '';
-      M.gare.forEach(function(_, i) {
-        var dot = document.createElement('span');
-        dot.className = 'vc-dot' + (i === 0 ? ' active' : '');
-        gd.appendChild(dot);
-      });
+      var credItems = Array.from(cm.querySelectorAll('.cred-media-item'));
+      var credCurrent = 0;
+      if (credItems[0] && credItems[0].tagName === 'VIDEO') credItems[0].play().catch(function(){});
+      setInterval(function() {
+        credItems[credCurrent].classList.remove('active');
+        if (credItems[credCurrent].tagName === 'VIDEO') credItems[credCurrent].pause();
+        credCurrent = (credCurrent + 1) % credItems.length;
+        credItems[credCurrent].classList.add('active');
+        if (credItems[credCurrent].tagName === 'VIDEO') credItems[credCurrent].play().catch(function(){});
+      }, 4000);
     }
   }
 
@@ -697,17 +705,11 @@ function initSpotlightCarousel(wrapId, trackId, prevId, nextId, dotsId, autoDela
     if (Math.abs(dx) > 44) goTo(dx < 0 ? current + 1 : Math.max(0, current - 1));
   }, { passive: true });
 
-  if (wrap) {
-    wrap.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
-    wrap.addEventListener('mouseleave', resetAuto);
-  }
-
   window.addEventListener('resize', function() { goTo(current, true); }, { passive: true });
 }
 
-/* Init: chi sono + gare */
-initSpotlightCarousel('vc-wrap',      'vc-track',      'vc-prev',      'vc-next',      'vc-dots',      4800);
-initSpotlightCarousel('vc-gare-wrap', 'vc-gare-track', 'vc-gare-prev', 'vc-gare-next', 'vc-gare-dots', 5000);
+/* Init chi sono — scorrimento automatico continuo */
+initSpotlightCarousel('vc-wrap', 'vc-track', 'vc-prev', 'vc-next', 'vc-dots', 3200);
 
 /* hero usa img statica, nessun video fallback necessario */
 
