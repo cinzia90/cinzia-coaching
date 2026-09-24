@@ -1,0 +1,8 @@
+[1:v]format=yuv420p,fps=30[bg];
+[0:v]format=rgba,scale=680:-1,fade=t=in:st=0:d=2.5:alpha=1[logofade];
+[bg][logofade]overlay=(main_w-overlay_w)/2:350:format=auto,format=yuv420p[withlogo];
+[withlogo]drawtext=fontfile=fonts/Oswald-Variable.ttf:textfile=captions/o1.txt:fontcolor=white:fontsize=100:x=(w-text_w)/2:y=1020:enable='between(t,0.4,3.8)':alpha='if(lt(t,0.52),(t-0.4)/0.12,1)'[o1];
+[o1]drawtext=fontfile=fonts/Oswald-Variable.ttf:textfile=captions/o2.txt:fontcolor=white:fontsize=100:x=(w-text_w)/2:y=1140:enable='between(t,0.8,3.8)':alpha='if(lt(t,0.92),(t-0.8)/0.12,1)'[o2];
+[o2]drawtext=fontfile=fonts/Oswald-Variable.ttf:textfile=captions/o3.txt:fontcolor=0x0FB8B0:fontsize=100:x=(w-text_w)/2:y=1260:enable='between(t,1.2,3.8)':alpha='if(lt(t,1.32),(t-1.2)/0.12,1)'[o3];
+[o3]drawtext=fontfile=fonts/Oswald-Variable.ttf:textfile=captions/o4.txt:fontcolor=white:fontsize=76:x=(w-text_w)/2:y=1520:enable='between(t,3.8,6.4)':alpha='if(lt(t,3.92),(t-3.8)/0.12,1)'[o4];
+[o4]drawtext=fontfile=fonts/Oswald-Variable.ttf:textfile=captions/o5.txt:fontcolor=0x5EDCD6:fontsize=54:x=(w-text_w)/2:y=1630:enable='between(t,4.3,6.4)':alpha='if(lt(t,4.42),(t-4.3)/0.12,1)',setsar=1[final]

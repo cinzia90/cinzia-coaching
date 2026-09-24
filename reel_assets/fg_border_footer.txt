@@ -1,0 +1,5 @@
+[11:v]format=rgba,scale=340:-1[logoscaled];
+[12:v]format=yuv420p,fps=30[topbar_bg];
+[topbar_bg][logoscaled]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2:format=auto,format=yuv420p[topbar];
+[13:v]format=yuv420p,fps=30[bottombar];
+[topbar][whole_b8][bottombar]vstack=inputs=3,setsar=1[final]
