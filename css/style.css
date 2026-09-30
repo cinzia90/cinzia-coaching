@@ -999,7 +999,9 @@ footer {
   max-width: 1100px; margin: 0 auto;
   border-top: 1px solid rgba(255,255,255,.04);
   padding-top: 24px; text-align: center;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px;
 }
+.footer-bottom a:hover { color: var(--teal); }
 
 /* ===== WHATSAPP FLOAT ===== */
 .wa-float {
@@ -1092,3 +1094,59 @@ footer {
   .hero-title { font-size: 2.6rem; }
   .marquee-item { width: 180px; height: 240px; }
 }
+
+/* ============================================================
+   LEGAL PAGES (privacy-policy.html, cookie-policy.html)
+   Pagine leggere, senza Three.js/GSAP/Lenis: solo testo e stile.
+   ============================================================ */
+.legal-body { background: var(--bg); }
+
+.legal-header {
+  padding: 28px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.legal-logo { display: inline-block; }
+.legal-logo img { height: 40px; width: auto; }
+
+.legal-page { padding: 60px 24px 90px; }
+.legal-page .container { max-width: 780px; }
+.legal-page h1 { font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 10px; color: var(--text); }
+.legal-updated { color: var(--muted); font-size: .85rem; margin-bottom: 40px; }
+.legal-page h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.4rem;
+  margin: 40px 0 12px;
+  color: var(--teal);
+}
+.legal-page p, .legal-page li { color: var(--text); font-size: .97rem; line-height: 1.75; margin-bottom: 14px; opacity: .9; }
+.legal-page ul { padding-left: 20px; margin-bottom: 14px; }
+.legal-page a { color: var(--teal); text-decoration: underline; }
+.legal-note {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: .68rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 48px;
+}
+.back-link { display: inline-block; margin-bottom: 24px; font-size: .9rem; font-weight: 600; color: var(--teal); text-decoration: none; }
+
+.legal-footer { border-top: 1px solid var(--border); padding: 24px; }
+.legal-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: .82rem;
+  color: var(--muted);
+}
+.legal-footer-inner a { color: var(--muted); text-decoration: none; }
+.legal-footer-inner a:hover { color: var(--teal); }

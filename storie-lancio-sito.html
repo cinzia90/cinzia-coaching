@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Storie – Lancio Sito Cinzia Rosato</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:100%; min-height:100%;
+    background:#000;
+    display:flex; flex-direction:row; align-items:flex-start;
+    gap:40px;
+    overflow-x:auto;
+    font-family:'Inter', sans-serif;
+    padding:32px;
+  }
+
+  @media print {
+    html, body { flex-direction:column; background:#050D11; padding:0; gap:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .story { page-break-after:always; box-shadow:none; }
+    .story:last-child { page-break-after:auto; }
+  }
+
+  .story {
+    width:1080px;
+    height:1920px;
+    background:#050D11;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:90px 84px 80px;
+    flex-shrink:0;
+  }
+
+  .story::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 85% 6%, rgba(15,184,176,0.20) 0%, transparent 55%),
+      radial-gradient(ellipse at 12% 94%, rgba(15,184,176,0.14) 0%, transparent 50%);
+    pointer-events:none;
+  }
+  .story::after {
+    content:'';
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:4px;
+    background:linear-gradient(to bottom, transparent, #0FB8B0, transparent);
+  }
+
+  .top { display:flex; justify-content:center; position:relative; z-index:1; }
+  .logo-plate { display:contents; }
+  .logo-lockup { height:120px; width:auto; display:block; filter:drop-shadow(0 0 30px rgba(15,184,176,.35)); }
+  .logo-lockup.small { height:88px; }
+
+  .step-tag {
+    display:inline-block;
+    background:rgba(15,184,176,0.15);
+    border:1px solid rgba(15,184,176,0.4);
+    color:#5EDCD6;
+    font-size:24px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    padding:12px 28px;
+    border-radius:40px;
+    width:fit-content;
+  }
+
+  .center { position:relative; z-index:1; display:flex; flex-direction:column; gap:34px; flex:1; justify-content:center; align-items:center; text-align:center; }
+
+  .headline {
+    font-family:'Oswald', sans-serif;
+    font-size:74px;
+    font-weight:700;
+    color:#E2F2F0;
+    line-height:1.12;
+    text-transform:uppercase;
+  }
+  .headline em { color:#0FB8B0; font-style:normal; }
+
+  .body-text {
+    font-size:33px;
+    color:rgba(226,242,240,0.78);
+    line-height:1.55;
+    font-weight:300;
+    max-width:800px;
+  }
+  .body-text strong { color:#E2F2F0; font-weight:600; }
+
+  /* MOCKUP BROWSER CON SITO */
+  .mockup {
+    width:100%;
+    max-width:780px;
+    background:#0A1418;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(15,184,176,.3);
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+  }
+  .mockup-bar {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:18px 24px;
+    background:#0D1B20;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .mockup-dot { width:16px; height:16px; border-radius:50%; }
+  .mockup-dot.r { background:#E06262; }
+  .mockup-dot.y { background:#E0C262; }
+  .mockup-dot.g { background:#62C28E; }
+  .mockup-url {
+    flex:1;
+    margin-left:14px;
+    background:#050D11;
+    border-radius:8px;
+    padding:8px 18px;
+    font-size:17px;
+    color:rgba(226,242,240,.4);
+    text-align:center;
+    letter-spacing:.5px;
+  }
+  .mockup-frame {
+    width:100%;
+    min-height:600px;
+    display:flex;
+    flex-direction:column;
+    background:
+      radial-gradient(ellipse at 75% 15%, rgba(15,184,176,.18) 0%, transparent 55%),
+      #050D11;
+    overflow:hidden;
+  }
+  .mockup-nav {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 26px;
+    background:rgba(5,13,17,.9);
+    border-bottom:1px solid rgba(15,184,176,.15);
+  }
+  .mockup-nav-logo { height:34px; width:auto; }
+  .mockup-nav-burger { color:#E2F2F0; font-size:22px; }
+  .mockup-badge {
+    display:flex; align-items:center; gap:8px;
+    font-size:14px; color:#D4A640; letter-spacing:.5px;
+    padding:22px 30px 0;
+  }
+  .mockup-badge-dot { width:8px; height:8px; border-radius:50%; background:#D4A640; }
+  .mockup-hero {
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:14px 30px 30px;
+  }
+  .mockup-hero-text { display:flex; flex-direction:column; gap:16px; flex:1; }
+  .mockup-hero-photo {
+    width:170px;
+    height:280px;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(15,184,176,.35);
+    flex-shrink:0;
+  }
+  .mockup-hero-photo img { width:100%; height:100%; object-fit:cover; object-position:center 15%; display:block; }
+  .mockup-hero-tag {
+    font-size:13px;
+    color:#0FB8B0;
+    background:rgba(15,184,176,.1);
+    border:1px solid rgba(15,184,176,.3);
+    padding:5px 14px;
+    border-radius:20px;
+    letter-spacing:1px;
+    width:fit-content;
+  }
+  .mockup-hero-title {
+    font-family:'Oswald', sans-serif;
+    font-size:42px;
+    font-weight:700;
+    color:#E2F2F0;
+    line-height:1.1;
+    text-transform:uppercase;
+  }
+  .mockup-hero-title em { color:#0FB8B0; font-style:normal; }
+  .mockup-hero-cta {
+    background:#0FB8B0;
+    color:#050D11;
+    font-size:15px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    padding:14px 28px;
+    border-radius:6px;
+    width:fit-content;
+  }
+
+  /* FEATURE LIST (story 2) */
+  .feature-list { display:flex; flex-direction:column; gap:18px; width:100%; max-width:800px; text-align:left; }
+  .feature-item {
+    display:flex;
+    align-items:flex-start;
+    gap:22px;
+    background:rgba(15,184,176,.06);
+    border:1px solid rgba(15,184,176,.22);
+    border-radius:16px;
+    padding:26px 28px;
+  }
+  .feature-icon {
+    width:56px; height:56px;
+    border-radius:50%;
+    background:rgba(15,184,176,.16);
+    border:1px solid rgba(15,184,176,.4);
+    color:#5EDCD6;
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px;
+    flex-shrink:0;
+  }
+  .feature-text { display:flex; flex-direction:column; gap:6px; }
+  .feature-title { font-family:'Oswald', sans-serif; font-size:29px; font-weight:600; color:#E2F2F0; text-transform:uppercase; letter-spacing:.5px; }
+  .feature-desc { font-size:24px; color:rgba(226,242,240,.62); line-height:1.45; }
+
+  /* CTA BOX (story 3) */
+  .cta-box {
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:rgba(15,184,176,.09);
+    border:1px solid rgba(15,184,176,.35);
+    border-radius:50px;
+    padding:22px 38px 22px 24px;
+  }
+  .cta-avatar {
+    width:64px; height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg, #0FB8B0, #5EDCD6);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Oswald', sans-serif;
+    font-size:28px;
+    font-weight:700;
+    color:#050D11;
+    flex-shrink:0;
+  }
+  .cta-text { display:flex; flex-direction:column; gap:3px; text-align:left; }
+  .cta-label { font-size:22px; color:rgba(226,242,240,.5); letter-spacing:1px; text-transform:uppercase; }
+  .cta-handle { font-family:'Oswald', sans-serif; font-size:32px; font-weight:600; color:#5EDCD6; }
+
+  .big-tagline { display:flex; flex-direction:column; gap:2px; }
+  .big-tagline .line {
+    font-family:'Oswald', sans-serif;
+    font-size:64px;
+    font-weight:700;
+    text-transform:uppercase;
+    line-height:1.18;
+    color:#E2F2F0;
+  }
+  .big-tagline .line.teal { color:#0FB8B0; }
+
+  .bottom { position:relative; z-index:1; display:flex; flex-direction:column; gap:22px; align-items:center; }
+  .swipe-hint {
+    text-align:center;
+    font-size:26px;
+    color:rgba(226,242,240,0.35);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .link-hint {
+    text-align:center;
+    font-size:24px;
+    color:#5EDCD6;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- STORIA 1 — REVEAL -->
+  <div class="story">
+    <div class="top">
+      <div class="logo-plate">
+        <img src="img/logo_nosfondo.png" class="logo-lockup" alt="Cinzia Rosato Coaching" />
+      </div>
+    </div>
+
+    <div class="center">
+      <span class="step-tag">Online ora</span>
+      <h1 class="headline">Il mio sito è<br><em>finalmente online!</em></h1>
+
+      <div class="mockup">
+        <div class="mockup-bar">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-url">cinziarosato &middot; coaching</div>
+        </div>
+        <div class="mockup-frame">
+          <div class="mockup-nav">
+            <img src="img/logo_nosfondo.png" class="mockup-nav-logo" alt="logo" />
+            <span class="mockup-nav-burger">&#9776;</span>
+          </div>
+          <div class="mockup-badge"><span class="mockup-badge-dot"></span>IFBB &middot; Pugliesi 2025 &middot; 1&deg; Posto</div>
+          <div class="mockup-hero">
+            <div class="mockup-hero-text">
+              <span class="mockup-hero-tag">Personal Trainer &middot; Coaching Online</span>
+              <div class="mockup-hero-title">Scegliti.<br>Costruisci.<br><em>Diventa la tua forza.</em></div>
+              <div class="mockup-hero-cta">Inizia il tuo percorso</div>
+            </div>
+            <div class="mockup-hero-photo">
+              <img src="img/hero-stage.jpg" alt="Cinzia Rosato" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="body-text">
+        Non un programma standard: un percorso <strong>costruito sui tuoi obiettivi</strong>, passo dopo passo.
+      </p>
+    </div>
+
+    <div class="bottom">
+      <div class="swipe-hint">Scorri per scoprire cosa trovi dentro &rarr;</div>
+    </div>
+  </div>
+
+  <!-- STORIA 2 — COSA TROVERAI -->
+  <div class="story">
+    <div class="top">
+      <div class="logo-plate">
+        <img src="img/logo_nosfondo.png" class="logo-lockup small" alt="Cinzia Rosato Coaching" />
+      </div>
+    </div>
+
+    <div class="center">
+      <span class="step-tag">Il metodo</span>
+      <h1 class="headline">Un solo passo:<br>il <em>percorso di coaching</em><br>fatto per te</h1>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">&#127919;</div>
+          <div class="feature-text">
+            <div class="feature-title">Scegli il tuo percorso</div>
+            <div class="feature-desc">Coaching personalizzato costruito sui tuoi obiettivi, non un programma standard</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">&#127814;</div>
+          <div class="feature-text">
+            <div class="feature-title">Consigli alimentari inclusi</div>
+            <div class="feature-desc">Indicazioni pratiche per accompagnare l&rsquo;allenamento, non diete rigide</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">&#129309;</div>
+          <div class="feature-text">
+            <div class="feature-title">Supporto costante</div>
+            <div class="feature-desc">Non solo una scheda: ti seguo passo passo, con ascolto vero e presenza costante</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">&#128172;</div>
+          <div class="feature-text">
+            <div class="feature-title">Coaching online, ovunque</div>
+            <div class="feature-desc">Ti seguo da tutta Italia, sempre al tuo fianco nel percorso</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="swipe-hint">Continua &rarr;</div>
+    </div>
+  </div>
+
+  <!-- STORIA 3 — CTA FINALE -->
+  <div class="story">
+    <div class="top">
+      <div class="logo-plate">
+        <img src="img/logo_nosfondo.png" class="logo-lockup" alt="Cinzia Rosato Coaching" />
+      </div>
+    </div>
+
+    <div class="center">
+      <span class="step-tag">Inizia oggi</span>
+
+      <div class="big-tagline">
+        <span class="line">Scegliti.</span>
+        <span class="line">Costruisci.</span>
+        <span class="line teal">Diventa la tua forza.</span>
+      </div>
+
+      <p class="body-text">
+        Il metodo giusto non &egrave; uguale per tutti. Il tuo percorso, il tuo ritmo,
+        <strong>i tuoi risultati</strong> &mdash; a partire da oggi.
+      </p>
+
+      <a href="https://www.instagram.com/rosatocinzia/" target="_blank" class="cta-box" style="text-decoration:none;">
+        <div class="cta-avatar">CR</div>
+        <div class="cta-text">
+          <span class="cta-label">Scrivimi in DM per iniziare</span>
+          <span class="cta-handle">@rosatocinzia</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="bottom">
+      <div class="link-hint">&#8593; Il link al sito &egrave; qui sopra &#8593;</div>
+      <div class="swipe-hint">Il sito &egrave; online, scegliti ora</div>
+    </div>
+  </div>
+
+</body>
+</html>
